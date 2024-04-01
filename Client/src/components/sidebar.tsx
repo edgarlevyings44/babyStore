@@ -1,13 +1,12 @@
-function MainLayout() {
+function Sidebar() {
   
     return (
       <> 
       <h1 className="text-3xl font-bold underline">
-        Main Layout
+        Sidebar
       </h1>
       </>
     )
   }
   
-  export default MainLayout
-  
+  export default Sidebar

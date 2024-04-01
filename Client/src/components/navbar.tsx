@@ -1,13 +1,13 @@
-function MainLayout() {
+function Navbar() {
   
     return (
       <> 
       <h1 className="text-3xl font-bold underline">
-        Main Layout
+        Navbar
       </h1>
       </>
     )
   }
   
-  export default MainLayout
+  export default Navbar
   
