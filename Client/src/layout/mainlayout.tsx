@@ -1,10 +1,17 @@
-function MainLayout() {
+import Sidebar from "../components/sidebar"
+import Navbar from "../components/navbar"
+
+function MainLayout({ children }: {children: React.ReactNode}) {
   
     return (
       <> 
-      <h1 className="text-3xl font-bold underline">
-        Main Layout
-      </h1>
+      <div>
+      <Navbar />
+      </div>
+      <div>
+      <Sidebar />
+      </div>
+      {children}
       </>
     )
   }

@@ -1,9 +1,13 @@
-import Navbar from "../components/navbar"
+import MainLayout from "../layout/mainlayout"
 function Homepage() {
   
     return (
       <> 
-      <Navbar />
+      <MainLayout>
+        <h1 className="text-3xl font-bold">
+          Homepage
+        </h1>
+      </MainLayout>
       </>
     )
   }
