@@ -1,13 +1,12 @@
-function Navbar() {
+import Navbar from "../components/navbar"
+function Homepage() {
   
     return (
       <> 
-      <h1 className="text-3xl font-bold underline">
-        Homepage
-      </h1>
+      <Navbar />
       </>
     )
   }
   
-  export default Navbar
+  export default Homepage
   
