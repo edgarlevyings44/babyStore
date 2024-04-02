@@ -1,3 +1,10 @@
+import { FiShoppingBag } from "react-icons/fi";
+import { FaShopify } from "react-icons/fa6";
+import { GiCarSeat } from "react-icons/gi";
+import { SiYourtraveldottv } from "react-icons/si";
+import { FaPersonBreastfeeding } from "react-icons/fa6";
+import { FaGifts } from "react-icons/fa";
+import { MdStroller } from "react-icons/md";
 function Sidebar() {
   
     return (
@@ -13,8 +20,13 @@ function Sidebar() {
           <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label> 
           <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
             {/* Sidebar content here */}
-            <li><a>Sidebar Item 1</a></li>
-            <li><a>Sidebar Item 2</a></li>
+            <li><a><FiShoppingBag /> All Categories</a></li>
+            <li><a><FaShopify /> Best Seller</a></li>
+            <li><a><GiCarSeat />Car Seats</a></li>
+            <li><a><SiYourtraveldottv />Travel</a></li>
+            <li><a><FaPersonBreastfeeding />Feeding</a></li>
+            <li><a><FaGifts />Gifts</a></li>
+            <li><a><MdStroller />Strollers</a></li>
           </ul>
         
         </div>
