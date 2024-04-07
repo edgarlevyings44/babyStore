@@ -15,4 +15,19 @@ class ProductsController extends Controller
             $products
         ]);
     }
+
+    public function singleProduct($id)
+    {
+        $singleProduct = Products::find($id);
+
+        if (!$singleProduct){
+            return response()->json([
+                "message" => "Product not found"
+            ]);
+        }
+
+        return response()->json([
+            $singleProduct
+        ]);
+    }
 }
