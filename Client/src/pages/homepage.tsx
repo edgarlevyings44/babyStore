@@ -1,11 +1,9 @@
 import MainLayout from "../layout/mainlayout"
-import SidebarLayout from "../layout/sidebarlayout"
 import Banner from "../components/banner"
 function Homepage() {
     return (
       <> 
       <MainLayout>
-        <SidebarLayout> 
           <div className="min-h-screen bg-base-200">
             <div className="bg-cyan-800 p-4 block-md">
             </div>
@@ -16,10 +14,7 @@ function Homepage() {
               Homepage
             </h1>
           </div>
-        </SidebarLayout>
       </MainLayout>
-
-
       </>
     )
   }

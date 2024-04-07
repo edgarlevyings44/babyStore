@@ -6,7 +6,8 @@ function Banner() {
   const images = [
     'https://i.im.ge/2024/04/02/W6IDAp.Screenshot-2024-04-01-174408.png',
     'https://i.im.ge/2024/04/02/W6yIvf.Screenshot-2024-04-01-174721.png',
-    'https://i.im.ge/2024/04/02/W6ywML.Screenshot-2024-04-01-174319.png',
+    'https://i.im.ge/2024/04/03/WNcx3W.Screenshot-2024-04-02-235000.png',
+    'https://i.im.ge/2024/04/03/WtYfl1.Screenshot-2024-04-03-195645.png',
   ];
 
   const nextSlide = () => {
