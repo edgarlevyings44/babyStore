@@ -62,13 +62,15 @@ class UserController extends Controller
 
         $user = Auth::user();
 
+
         $request->session()->put('user_id', $user->id);
 
         $token = $user->createToken("user_token")->accessToken;
 
         return response()->json([
             "message" => "Logged in",
-            "Token" => $token
+            "Token" => $token,
+            "User_Type" => $user->user_type
         ]);
     }
 
