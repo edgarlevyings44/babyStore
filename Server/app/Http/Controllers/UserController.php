@@ -35,6 +35,7 @@ class UserController extends Controller
 
 
         return response()->json([
+            "status" => 200,
             "message" => "User created",
             "User" => $user
         ]);
