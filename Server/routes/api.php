@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/products', [ProductsController::class, 'getProduct']);
 Route::get('/products/{id}', [ProductsController::class, 'singleProduct']);
 
-Route::post('/createuser', [UserController::class, 'createUser']);
+Route::post('/register', [UserController::class, 'createUser']);
 Route::post('/login', [UserController::class, 'login']);
 
 
