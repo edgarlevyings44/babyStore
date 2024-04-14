@@ -1,5 +1,6 @@
 import MainLayout from "../layout/mainlayout"
 import Banner from "../components/banner"
+import Products from "../components/products"
 function Homepage() {
     return (
       <> 
@@ -10,9 +11,9 @@ function Homepage() {
             <Banner />
             <div className="bg-green-900 p-4 block-md">
             </div>
-            <h1 className="text-3xl font-bold">
-              Homepage
-            </h1>
+            <div>
+              < Products/>
+            </div>
           </div>
       </MainLayout>
       </>
