@@ -1,6 +1,7 @@
-import axios from "axios";
+
 import { useState, FormEvent, ChangeEvent } from "react"
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function Register() {
     
@@ -18,16 +19,30 @@ function Register() {
         setFormData({ ...formData, [key]: value});
     };
 
-    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
 
         event.preventDefault();
 
-        const res = await axios.post('http://127.0.0.1:8000/api/register', formData);
-
-        if (res.data.status === 200){
-            console.log(res.data.message);
-            
-        }
+        fetch('http://127.0.0.1:8000/api/register', {
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify(formData)
+        })
+        .then((response) => {
+            if (response.ok){
+                Swal.fire({
+                    title:"Register",
+                    text:"Account registered successfully",
+                    icon:"success"
+                });
+                navigate('/login')
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        })
     }
 
   return (
