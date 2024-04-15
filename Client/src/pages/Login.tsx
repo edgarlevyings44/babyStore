@@ -86,6 +86,10 @@ function Login() {
                     <a href="/resetpassword" className="text-blue-500 ml-36">Forgot Password ?</a>
 
                 </div>
+                
+                <div>
+                    <a href="/register" className="text-blue-900">Don't have an account? Register</a>
+                </div>
 
                 <div>
                     <button type="submit" className="flex justify-center px-40 py-4 rounded-md bg-blue-600 font-semibold hover:bg-green-900 cursor-pointer text-white text-2xl">Login</button>
