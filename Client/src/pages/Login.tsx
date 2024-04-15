@@ -83,8 +83,12 @@ function Login() {
 
                     <label className="text-blue-900">Remember Me</label>
 
-                    <a href="/resetpassword" className="text-blue-500 ml-36">Forgot Password ?</a>
+                    <a href="/resetpassword" className="text-red-500 ml-36">Forgot Password ?</a>
 
+                </div>
+
+                <div>
+                    <a href="/register" className="text-blue-900">Don't have an account? Register</a>
                 </div>
 
                 <div>
