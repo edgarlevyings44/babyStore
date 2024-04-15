@@ -14,9 +14,9 @@ class UserController extends Controller
 {
     public function createUser(Request $request)
     {
-        $validator = Validator::make($request->only('firstname', 'lastname', 'email', 'password', 'userType'),[
-            'firstname' => ['required', 'min:4', 'max:50', 'string'],
-            'lastname' => ['required', 'min:4', 'max:50', 'string'],
+        $validator = Validator::make($request->only('firstname', 'lastname', 'email', 'password', 'user_type'),[
+            'firstname' => ['required', 'min:2', 'max:50', 'string'],
+            'lastname' => ['required', 'min:2', 'max:50', 'string'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'min:8', 'max:255', 'string']
         ]);
@@ -32,14 +32,17 @@ class UserController extends Controller
             'lastname' => $request->input('lastname'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
-            'userType' => $request->input('userType')
+            'user_type' => $request->input('user_type')
         ]);
 
 
         return response()->json([
             "status" => 200,
             "message" => "User created",
-            "User" => $user
+            "User Details" => $user,
+            "User" => [
+                'user Type' => $user->user_type
+            ]
         ]);
 
 
