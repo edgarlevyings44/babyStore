@@ -33,22 +33,42 @@ function Login() {
         })
         .then((response) => {
             if (response.ok){
-                Swal.fire({
-                    position:"top-end",
-                    icon:"success",
-                    title:"Logged in",
-                    showConfirmButton:false,
-                    timer:1000
-                })
 
-                navigate('/cart');
+                return response.json();
+
             }else{
-                Swal.fire({
-                    icon:"error",
-                    title:"Ooops...",
-                    text:"Something went wrong"
-                })
+                throw new Error('Response was not ok')
             }
+        })
+        .then((data) => {
+            console.log(data.User.roles[0].name);
+
+            Swal.fire({
+                position:"top-end",
+                icon:"success",
+                title:"Logged in",
+                showConfirmButton:false,
+                timer:1000
+            })
+
+            const isAdmin = data.User.roles[0].name == 'admin';
+
+            if (isAdmin){
+                navigate('/admin');
+            }else{
+                navigate('/cart');
+            }
+
+            
+        })
+        .catch((error) => {
+            console.error('Error', error);
+
+            Swal.fire({
+                icon:"error",
+                title:"Ooops...",
+                text:"Something went wrong"
+            })
         })
     }
   return (

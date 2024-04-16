@@ -1,7 +1,7 @@
 import { FiShoppingBag } from "react-icons/fi";
 import { FaShopify } from "react-icons/fa6";
 import { GiCarSeat } from "react-icons/gi";
-import { SiYourtraveldottv } from "react-icons/si";
+// import { SiYourtraveldottv } from "react-icons/si";
 import { FaPersonBreastfeeding } from "react-icons/fa6";
 import { FaGifts } from "react-icons/fa";
 import { MdStroller } from "react-icons/md";
@@ -21,7 +21,7 @@ function Sidebar({ children }: {children: React.ReactNode}) {
             <li><a className="lg:text-xl"><FiShoppingBag /> All Categories</a></li>
             <li><a className="lg:text-xl"><FaShopify /> Best Seller</a></li>
             <li><a className="lg:text-xl"><GiCarSeat />Car Seats</a></li>
-            <li><a className="lg:text-xl"><SiYourtraveldottv />Travel</a></li>
+            {/* <li><a className="lg:text-xl"><SiYourtraveldottv />Travel</a></li> */}
             <li><a className="lg:text-xl"><FaPersonBreastfeeding />Feeding</a></li>
             <li><a className="lg:text-xl"><FaGifts />Gifts</a></li>
             <li><a className="lg:text-xl"><MdStroller />Strollers</a></li>
