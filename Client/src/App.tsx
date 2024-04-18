@@ -18,7 +18,7 @@ function App() {
     <Route path='/cart' element={<Cart />}/>
 
     <Route path='/admin' element={<LayoutAdmin />}>
-      <Route path='/admin/dashboard' element={<AdminDashboard />}/>
+      <Route index element={<AdminDashboard />}/>
       <Route path='/admin/orders' element={<AdminOrder />}/>
     </Route>
 
