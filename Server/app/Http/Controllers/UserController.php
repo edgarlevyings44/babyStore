@@ -82,6 +82,7 @@ class UserController extends Controller
         $user_role = $user->getRoleNames();
 
         return response()->json([
+            "Token" => $token,
             "User" => $user,
             $user_role
         ]);

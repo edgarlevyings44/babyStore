@@ -9,6 +9,8 @@ function Login() {
         password:""
     });
 
+    const [loading, setLoading] = useState(false);
+
     const navigate = useNavigate();
 
     const handleChange = (event:ChangeEvent<HTMLInputElement>) => {
@@ -23,6 +25,8 @@ function Login() {
     const handleLogin: FormEventHandler<HTMLFormElement> = (event) => {
         
         event.preventDefault();
+
+        setLoading(true);
 
         fetch('http://127.0.0.1:8000/api/login', {
             method:'POST',
@@ -69,6 +73,9 @@ function Login() {
                 title:"Ooops...",
                 text:"Something went wrong"
             })
+        })
+        .finally(() => {
+            setLoading(false);
         })
     }
   return (
@@ -118,6 +125,14 @@ function Login() {
             </form>
 
         </div>
+
+        {loading && (
+            <div className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center">
+                <div className="bg-white p-6 rounded-lg shadow-md">
+                    <p className="text-lg font-semibold">Loading...</p>
+                </div>
+            </div>
+        )}
     </div>
   )
 }

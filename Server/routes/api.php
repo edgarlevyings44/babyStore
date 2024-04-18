@@ -40,6 +40,13 @@ Route::group([
 });
 
 
+Route::group([
+    "middleware" => ["auth:api", "admin"]
+], function(){
+    Route::get('/admin/products', [ProductsController::class, 'getproduct']);
+});
+
+
 
 
 
