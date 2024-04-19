@@ -11,6 +11,9 @@ function Register() {
         email:"",
         password:""
     })
+
+    const [loading, setLoading] = useState(false);
+
     const navigate = useNavigate();
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -22,6 +25,8 @@ function Register() {
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
 
         event.preventDefault();
+
+        setLoading(true);
 
         fetch('http://127.0.0.1:8000/api/register', {
             method:'POST',
@@ -42,6 +47,14 @@ function Register() {
         })
         .catch((error) => {
             console.log(error);
+            Swal.fire({
+                icon:"error",
+                title:"Ooops...",
+                text:"Something went wrong"
+            })
+        })
+        .finally(() => {
+            setLoading(false);
         })
     }
 
@@ -100,6 +113,13 @@ function Register() {
             </form>
 
         </div>
+        {loading && (
+            <div className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center">
+                <div className="bg-white p-6 rounded-lg shadow-md">
+                    <p className="text-lg font-semibold">Loading...</p>
+                </div>
+            </div>
+        )}
     </div>
   )
 }

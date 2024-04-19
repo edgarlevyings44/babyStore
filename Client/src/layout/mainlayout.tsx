@@ -1,6 +1,6 @@
-import Navbar from "../components/navbar"
-import Footer from "../components/footer"
-import Sidebar from "../components/sidebar"
+import Navbar from "../Components/navbar"
+import Footer from "../Components/footer"
+import Sidebar from "../Components/sidebar"
 
 function MainLayout({ children }: {children: React.ReactNode}) {
   

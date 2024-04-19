@@ -1,6 +1,6 @@
 import MainLayout from "../layout/mainlayout"
-import Banner from "../components/banner"
-import Products from "../components/products"
+import Banner from "../Components/banner"
+import Products from "../Components/products"
 function Homepage() {
     return (
       <> 

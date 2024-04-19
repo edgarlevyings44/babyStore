@@ -8,13 +8,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Role;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
     public function createUser(Request $request)
     {
-        $validator = Validator::make($request->only('firstname', 'lastname', 'email', 'password', 'user_type'),[
+        $validator = Validator::make($request->only('firstname', 'lastname', 'email', 'password'),[
             'firstname' => ['required', 'min:2', 'max:50', 'string'],
             'lastname' => ['required', 'min:2', 'max:50', 'string'],
             'email' => ['required', 'email', 'unique:users,email'],
@@ -31,18 +32,23 @@ class UserController extends Controller
             'firstname' => $request->input('firstname'),
             'lastname' => $request->input('lastname'),
             'email' => $request->input('email'),
-            'password' => Hash::make($request->input('password')),
-            'user_type' => $request->input('user_type')
+            'password' => Hash::make($request->input('password'))
         ]);
+
+        $adminRole = Role::where('name', 'admin')->first();
+        $userRole = Role::where('name', 'user')->first();
+
+        $user->assignRole($userRole);
+
+        $user_role = $user->getRoleNames();
+        
 
 
         return response()->json([
             "status" => 200,
             "message" => "User created",
             "User Details" => $user,
-            "User" => [
-                'user Type' => $user->user_type
-            ]
+            $user_role
         ]);
 
 
@@ -73,10 +79,12 @@ class UserController extends Controller
 
         $token = $user->createToken("user_token")->accessToken;
 
+        $user_role = $user->getRoleNames();
+
         return response()->json([
-            "message" => "Logged in",
             "Token" => $token,
             "User" => $user,
+            $user_role
         ]);
     }
 
