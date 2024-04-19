@@ -6,7 +6,7 @@ import { GoGraph } from "react-icons/go";
 
 function Boxwrapper({children}: {children: ReactNode}){
   return (
-    <div className='bg-white rounded-lg p-4 flex flex-1 items-center border border-gray-200 ml-5 mr-2'>
+    <div className='bg-white rounded-lg flex flex-1 items-center border border-gray-200 lg:mt-10 ml-5 mr-2'>
       {children}
     </div>
   )
@@ -19,10 +19,10 @@ function Statistics() {
 
       <Boxwrapper>
         <div className="flex flex-1 flex-col ml-5">
-          <span className="text-sm text-gray-500 font-light">Total Order</span>
+          <span className="text-sm text-gray-500 font-light">Total Users</span>
 
           <div className="flex-col mt-1">
-            <strong className="text-3xl">10293</strong>
+            <strong className="text-3xl">40689</strong>
           </div>
 
           <div className="mt-1 flex-col">
@@ -70,16 +70,16 @@ function Statistics() {
 
       <Boxwrapper>
         <div className="flex flex-1 flex-col ml-5">
-          <span className="text-sm text-gray-500 font-light">Total Order</span>
+          <span className="text-sm text-gray-500 font-light">Total Sales</span>
 
           <div className="flex-col mt-1">
-            <strong className="text-3xl">10293</strong>
+            <strong className="text-3xl">$ 89,000</strong>
           </div>
 
           <div className="mt-1 flex-col">
             <div className="flex">
               <FaArrowTrendUp fontSize={20} className="text-green-500"/>
-              <span className="ml-3 text-green-600">8.5% </span>
+              <span className="ml-3 text-green-600">1.3% </span>
             </div>
             <div>
               <span className="text-black">Up from yesterday</span>
@@ -96,16 +96,16 @@ function Statistics() {
 
       <Boxwrapper>
         <div className="flex flex-1 flex-col ml-5">
-          <span className="text-sm text-gray-500 font-light">Total Order</span>
+          <span className="text-sm text-gray-500 font-light">Total Pending</span>
 
           <div className="flex-col mt-1">
-            <strong className="text-3xl">10293</strong>
+            <strong className="text-3xl">2040</strong>
           </div>
 
           <div className="mt-1 flex-col">
             <div className="flex">
               <FaArrowTrendUp fontSize={20} className="text-green-500"/>
-              <span className="ml-3 text-green-600">8.5% </span>
+              <span className="ml-3 text-green-600">1.8% </span>
             </div>
             <div>
               <span className="text-black">Up from yesterday</span>

@@ -9,8 +9,7 @@ function Header() {
     <div className="bg-white h-16 px-4 flex justify-between items-center border-b border-gray-200">
 
       <div className="relative">
-        <HiOutlineSearch fontSize={20} className="text-gray-400 absolute top-1/2 -translate-y-1/2 left-3"/>
-        <input type="text" placeholder="Search" className="text-sm focus:outline-none active:outline-none h-10 w-[12rem] md:w-[18rem] lg:w-[24rem] border border-gray-300 rounded-md px-4 pl-11 pr-4"/>
+        <p>Good Morning</p>
       </div>
 
       <div className="flex gap-2 md:gap-5 lg:gap-6 items-center mr-6">

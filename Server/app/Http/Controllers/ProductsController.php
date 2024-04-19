@@ -12,9 +12,9 @@ class ProductsController extends Controller
     {
         $products = Products::all();
 
-        return response()->json([
+        return response()->json(
             $products
-        ]);
+        );
     }
 
     public function singleProduct($id)
