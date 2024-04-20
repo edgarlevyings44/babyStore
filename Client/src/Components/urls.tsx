@@ -4,3 +4,4 @@ export const loginUser = `${BASE_URL}/login`;
 export const registerUser = `${BASE_URL}/register`;
 
 export const productsUrl = `${BASE_URL}/products`
+export const productsDetailsUrl = `${BASE_URL}/products/`
