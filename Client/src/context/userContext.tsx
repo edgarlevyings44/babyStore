@@ -14,7 +14,7 @@ interface User {
     email: string;
     role: string;
 }
-export interface AuthContextProps {
+export interface UserContextProps {
     token: string | null;
     isAuthenticated: boolean;
     user: User | null;
@@ -23,11 +23,11 @@ export interface AuthContextProps {
     logout: () => void;
 }
 
-export const AuthContext = createContext<AuthContextProps | undefined>(undefined);
+export const UserContext = createContext<UserContextProps | undefined>(undefined);
 
-export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
-    const [token, setToken] = useState<string | null>(localStorage.getItem('auth'));
+    const [token, setToken] = useState<string | null>(localStorage.getItem('user'));
     const [user, setUser] = useState<User | null>(() => JSON.parse(localStorage.getItem('user') || 'null'));
     const [userId, setUserId] = useState<string | null>(() => localStorage.getItem('userId'));
 
@@ -57,7 +57,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
     const isAuthenticated = !!token;
 
-    const contextValue: AuthContextProps = {
+    const contextValue: UserContextProps = {
         token,
         isAuthenticated,
         user,
@@ -66,5 +66,5 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         logout,
     };
 
-    return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
+    return <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>
 }
