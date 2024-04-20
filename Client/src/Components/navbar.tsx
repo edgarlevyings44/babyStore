@@ -1,3 +1,4 @@
+import ThemedComponent from "./themeComponent";
 function Navbar() {
   return (
     <>
@@ -9,6 +10,7 @@ function Navbar() {
           </label>
         </div>
         <a className="btn btn-ghost text-xl">BabyStore</a>
+        <ThemedComponent />
         </div>
         <div className="form-control">
           <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
