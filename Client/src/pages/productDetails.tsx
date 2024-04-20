@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { productsDetailsUrl } from '../Components/urls';
 
 interface Product {
   id: number;
@@ -20,7 +21,7 @@ function ProductDetails() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:8000/api/products/${id}`);
+        const response = await fetch(`productsDetailsUrl/${id}`);
         const data = await response.json();
         setProduct(data);
       } catch (error) {
