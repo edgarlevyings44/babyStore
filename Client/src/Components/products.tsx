@@ -21,7 +21,7 @@ function Products() {
       try {
         const response = await fetch('http://127.0.0.1:8000/api/products');
         const data = await response.json();
-        setProducts(data[0]);
+        setProducts(data);
       } catch (error) {
         console.error('Error fetching products:', error);
       }
