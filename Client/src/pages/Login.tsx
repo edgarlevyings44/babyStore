@@ -1,6 +1,7 @@
-import { ChangeEvent, FormEvent, FormEventHandler, useState } from "react"
+import { ChangeEvent, FormEventHandler, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { loginUser } from "../Components/urls";
 
 function Login() {
 
@@ -28,7 +29,7 @@ function Login() {
 
         setLoading(true);
 
-        fetch('http://127.0.0.1:8000/api/login', {
+        fetch(loginUser, {
             method:'POST',
             headers:{
                 'Content-Type' : 'application/json'
