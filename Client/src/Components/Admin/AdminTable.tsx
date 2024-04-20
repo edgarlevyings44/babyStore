@@ -6,13 +6,18 @@ function AdminTable() {
     const linkClasses = "z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600";
     const [isOpen, setIsOpen] = useState([]);
 
+    const [loading, setLoading] = useState(false);
+
     const [products, setProduct] = useState([]);
 
     useEffect(() => {
+        setLoading(true);
+
         fetch(productsUrl)
         .then((response) => response.json())
         .then((data) => {
             setProduct(data);
+            setLoading(false);
             setIsOpen(new Array(data.length).fill(false));
         });
         console.log('This is data', products)
@@ -81,6 +86,13 @@ function AdminTable() {
                 </tr>
             ))}
         </tbody>
+        {loading && (
+                <tfoot>
+                    <tr>
+                        <td colSpan="6" className="text-center text-2xl p-4">Loading...</td>
+                    </tr>
+                </tfoot>
+            )}
     </table>
   )
 }
