@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { productsUrl } from '../urls';
 
 function AdminTable() {
 
@@ -8,7 +9,7 @@ function AdminTable() {
     const [products, setProduct] = useState([]);
 
     useEffect(() => {
-        fetch('http://127.0.0.1:8000/api/products')
+        fetch(productsUrl)
         .then((response) => response.json())
         .then((data) => {
             setProduct(data);
