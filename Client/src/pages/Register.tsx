@@ -2,6 +2,7 @@
 import { useState, FormEvent, ChangeEvent } from "react"
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { registerUser } from "../Components/urls";
 
 function Register() {
     
@@ -28,7 +29,7 @@ function Register() {
 
         setLoading(true);
 
-        fetch('http://127.0.0.1:8000/api/register', {
+        fetch(registerUser, {
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
