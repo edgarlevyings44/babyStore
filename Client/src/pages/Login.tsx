@@ -2,6 +2,7 @@ import { ChangeEvent, FormEventHandler, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { loginUser } from "../Components/urls";
+import { useUser } from "../hooks/useUser";
 
 function Login() {
 
@@ -13,6 +14,7 @@ function Login() {
     const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
+    const { login } = useUser();
 
     const handleChange = (event:ChangeEvent<HTMLInputElement>) => {
         const key = event.target.name;
@@ -46,7 +48,10 @@ function Login() {
             }
         })
         .then((data) => {
+
+            login(data.token, data.User);
             console.log(data.User.roles[0].name);
+            console.log(data);
 
             Swal.fire({
                 position:"top-end",
