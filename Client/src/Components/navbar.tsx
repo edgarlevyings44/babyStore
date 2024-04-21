@@ -1,5 +1,7 @@
-import ThemedComponent from "./themeComponent";
+// import ThemedComponent from "./themeComponent";
+import { useUser } from "../hooks/useUser";
 function Navbar() {
+  const { user } = useUser();
   return (
     <>
       <div className="navbar bg-base-100">
@@ -10,7 +12,10 @@ function Navbar() {
           </label>
         </div>
         <a className="btn btn-ghost text-xl">BabyStore</a>
-        <ThemedComponent />
+        {/* <ThemedComponent /> */}
+        <div>
+          Welcome, {user?.firstname}
+        </div>
         </div>
         <div className="form-control">
           <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
