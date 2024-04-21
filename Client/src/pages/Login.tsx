@@ -49,7 +49,7 @@ function Login() {
         })
         .then((data) => {
 
-            login(data.token, data.User);
+            login(data.Token, data.User);
             console.log(data.User.roles[0].name);
             console.log(data);
 
