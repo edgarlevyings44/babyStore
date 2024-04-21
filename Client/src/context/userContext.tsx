@@ -1,25 +1,27 @@
 import { createContext, ReactNode, useState } from 'react'
 
-
-type JwtPayload = {
-    _id: string;
-    name: string;
-    email: string;
-    role: string;
-}
-
 interface User {
-    _id: string;
-    name: string;
+    id: number;
     email: string;
-    role: string;
+    email_verified_at: string | null;
+    created_at: string;
+    updated_at: string;
+    firstname: string;
+    lastname: string;
+    role: Role[];
+}
+interface Role {
+    id: number;
+    name: string;
+    guard_name: string;
+    created_at: string;
+    updated_at: string;
 }
 export interface UserContextProps {
     token: string | null;
     isAuthenticated: boolean;
     user: User | null;
-    userId: string | null;
-    login: (token: string) => void;
+    login: (token: string,newUser:User) => void;
     logout: () => void;
 }
 
@@ -27,32 +29,24 @@ export const UserContext = createContext<UserContextProps | undefined>(undefined
 
 export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
-    const [token, setToken] = useState<string | null>(localStorage.getItem('user'));
-    const [user, setUser] = useState<User | null>(() => JSON.parse(localStorage.getItem('user') || 'null'));
-    const [userId, setUserId] = useState<string | null>(() => localStorage.getItem('userId'));
-
-    const login = (newToken: string) => {
+    const [token, setToken] = useState<string | null>(localStorage.getItem('Token'));
+    const [user, setUser] = useState<User | null>(() => JSON.parse(localStorage.getItem('User') || 'null'));
+    
+    const login = (newToken: string, newUser:User) => {
         setToken(newToken);
-        localStorage.setItem('auth', newToken);
+        localStorage.setItem('Token', newToken);
 
-        const decodedUser = jwtDecode<JwtPayload>(newToken) as User;
-        setUser(decodedUser);
-        localStorage.setItem("user", JSON.stringify(decodedUser));
+        setUser(newUser);
+        localStorage.setItem('User', JSON.stringify(newUser));
 
-        setUserId(decodedUser._id);
-        localStorage.setItem('userId', decodedUser._id);
-
-        // Log user info to console
-        console.log("User logged in:", decodedUser);
+        console.log("User logged in:", newUser);
     };
 
     const logout = () => {
         setToken(null);
         setUser(null);
-        setUserId(null);
-        localStorage.removeItem('auth');
-        localStorage.removeItem('user');
-        localStorage.removeItem('userId');
+        localStorage.removeItem('Token');
+        localStorage.removeItem('User');
     };
 
     const isAuthenticated = !!token;
@@ -61,7 +55,6 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         token,
         isAuthenticated,
         user,
-        userId,
         login,
         logout,
     };
