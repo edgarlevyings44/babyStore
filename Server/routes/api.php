@@ -37,6 +37,7 @@ Route::group([
     Route::post('/logout', [UserController::class, 'logout']);
     Route::put('/forgot', [UserController::class, 'forgotPassword']);
     Route::post('addproduct', [ProductsController::class, 'addProduct']);
+    Route::get('/users', [UserController::class,'allUser']);
 });
 
 

@@ -10,13 +10,13 @@ function AdminProducts() {
 
         <div className="mx-auto px-4 lg:px-1">
 
-            <div className="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overlflow-hidden">
+            <div className="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overlflow-hidden flex flex-col">
 
-                <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
+                <div className="flex flex-col md:flex-row md:items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
 
                     <div className="w-full md:w-1/2">
 
-                        <form className="flex items-center">
+                        <form className="flex items-center w-1/2">
                             <label className="sr-only">Search</label>
 
                             <div className="relative w-full">
@@ -32,9 +32,9 @@ function AdminProducts() {
                         </form>
                     </div>
 
-                    <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 md:items-center justify-end md:space-x-3 flex-shrink-0">
+                    <div className="w-1/2 md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 md:items-center justify-end md:space-x-3 flex-shrink-0">
 
-                        <button type="button" className="flex items-center justify-center text-white bg-blue-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+                        <button type="button" className="flex items-center justify-center text-white bg-blue-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 focus:outline-none">
                             <IoIosAdd fontSize={20} className="text-white mr-2"/>
                             Add product
                         </button>
@@ -98,9 +98,9 @@ function AdminProducts() {
                     </div>
                 </div>
 
-                <div className="overflow-x-auto">
-                    <AdminTable />
-                </div>
+
+                <AdminTable />
+
             </div>
             
         </div>
