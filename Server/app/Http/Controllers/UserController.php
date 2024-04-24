@@ -89,14 +89,23 @@ class UserController extends Controller
     }
 
 
-    public function profile()
+    public function profile($id)
     {
         $user = Auth::user();
+        
+        if ($user->id !== $id){
+            return response()->json([
+                'status' => false,
+                'message' => 'Unauthorized access'
+            ], 403);
+        }
+
+        $user_info = User::find($id);
 
         return response()->json([
             "status" => true,
             "Message" => "Profile Information",
-            "User" => $user
+            "User" => $user_info
         ]);
     }
 

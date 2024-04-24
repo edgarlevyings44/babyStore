@@ -33,11 +33,11 @@ Route::post('/login', [UserController::class, 'login']);
 Route::group([
     "middleware" => ["auth:api"]
 ], function(){
-    Route::get('/profile', [UserController::class, 'profile']);
+    Route::get('/profile/{id}', [UserController::class, 'profile']);
     Route::post('/logout', [UserController::class, 'logout']);
     Route::put('/forgot', [UserController::class, 'forgotPassword']);
     Route::post('addproduct', [ProductsController::class, 'addProduct']);
-    Route::get('/users', [UserController::class,'allUser']);
+    
 });
 
 
@@ -45,6 +45,7 @@ Route::group([
     "middleware" => ["auth:api", "admin"]
 ], function(){
     Route::get('/admin/products', [ProductsController::class, 'getproduct']);
+    Route::get('/admin/users', [UserController::class,'allUser']);
 });
 
 
