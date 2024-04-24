@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import { productsDetailsUrl } from '../Components/urls';
 
 interface Product {
@@ -21,9 +22,8 @@ function ProductDetails() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`productsDetailsUrl/${id}`);
-        const data = await response.json();
-        setProduct(data);
+        const response = await axios.get(`${productsDetailsUrl}/${id}`);
+        setProduct(response.data);
       } catch (error) {
         console.error('Error fetching product:', error);
       }

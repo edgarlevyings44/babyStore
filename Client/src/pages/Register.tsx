@@ -1,6 +1,7 @@
 
 import { useState, FormEvent, ChangeEvent } from "react"
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import Swal from "sweetalert2";
 import { registerUser } from "../Components/urls";
 
@@ -23,40 +24,38 @@ function Register() {
         setFormData({ ...formData, [key]: value});
     };
 
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
 
         event.preventDefault();
 
         setLoading(true);
 
-        fetch(registerUser, {
-            method:'POST',
-            headers:{
-                'Content-Type':'application/json'
-            },
-            body:JSON.stringify(formData)
-        })
-        .then((response) => {
-            if (response.ok){
-                Swal.fire({
-                    title:"Register",
-                    text:"Account registered successfully",
-                    icon:"success"
-                });
-                navigate('/login')
-            }
-        })
-        .catch((error) => {
+        try {
+            await axios.post(registerUser, formData, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            Swal.fire({
+                title:"Register",
+                text:"Account registered successfully",
+                icon:"success"
+            });
+            navigate('/login');
+            
+
+        } catch (error) {
             console.log(error);
             Swal.fire({
                 icon:"error",
                 title:"Ooops...",
                 text:"Something went wrong"
-            })
-        })
-        .finally(() => {
+            });
+        
+        } finally {
             setLoading(false);
-        })
+        }
     }
 
   return (

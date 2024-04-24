@@ -1,5 +1,6 @@
 import { ChangeEvent, FormEventHandler, useState } from "react"
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import Swal from "sweetalert2";
 import { loginUser } from "../Components/urls";
 import { useUser } from "../hooks/useUser";
@@ -25,33 +26,23 @@ function Login() {
 
 
 
-    const handleLogin: FormEventHandler<HTMLFormElement> = (event) => {
+    const handleLogin: FormEventHandler<HTMLFormElement> = async (event) => {
         
         event.preventDefault();
 
         setLoading(true);
 
-        fetch(loginUser, {
-            method:'POST',
-            headers:{
-                'Content-Type' : 'application/json'
-            },
-            body:JSON.stringify(formData)
-        })
-        .then((response) => {
-            if (response.ok){
-
-                return response.json();
-
-            }else{
-                throw new Error('Response was not ok')
-            }
-        })
-        .then((data) => {
-
-            login(data.Token, data.User);
-            console.log(data.User.roles[0].name);
-            console.log(data);
+        try{
+            const response = await axios.post(loginUser, formData, {
+                headers:{
+                    'Content-Type' : 'application/json'
+                }
+         
+            });
+        
+            login(response.data.Token, response.data.User);
+            console.log(response.data.User.roles[0].name);
+            console.log(response.data);
 
             Swal.fire({
                 position:"top-end",
@@ -61,28 +52,28 @@ function Login() {
                 timer:1000
             })
 
-            const isAdmin = data.User.roles[0].name == 'admin';
+            const isAdmin = response.data.User.roles[0].name == 'admin';
 
             if (isAdmin){
                 navigate('/admin');
             }else{
-                navigate('/cart');
+                navigate('/');
             }
 
             
-        })
-        .catch((error) => {
+        
+        } catch (error) {
             console.error('Error', error);
 
             Swal.fire({
                 icon:"error",
                 title:"Ooops...",
                 text:"Something went wrong"
-            })
-        })
-        .finally(() => {
+            });
+        
+        } finally {
             setLoading(false);
-        })
+        }
     }
   return (
     <div className="container flex flex-col justify-center items-center mx-auto mt-60">
