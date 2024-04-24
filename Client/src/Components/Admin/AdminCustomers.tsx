@@ -3,6 +3,7 @@ import {HiOutlineSearch } from 'react-icons/hi'
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function AdminCustomers() {
 
@@ -41,7 +42,7 @@ function AdminCustomers() {
             console.error('Error fetching users', error);
             setLoading(false);
         })
-        console.log(users);
+        
     },[])
 
     const formatDate = (dateString) => {
@@ -50,14 +51,14 @@ function AdminCustomers() {
     }
 
   return (
-    <div className="overflow-x-auto overflow-y-auto w-full">
+    <div className="overflow-x-auto overflow-y-auto">
 
         <div className='relative mt-5 ml-5'>
             <HiOutlineSearch fontSize={20} className='text-gray-400 absolute top-1/2 -translate-y-1/2 left-3'/>
             <input type='text' placeholder='Search' className='text-sm focus:outline-none active:outline-none h-10 w-[12rem] md:w-[20rem] border border-gray-300 rounded-md px-4 pl-11 pr-4'/>
         </div>
 
-        <table className="block text-gray-500 text-center w-1 md:w-full">
+        <table className="block text-gray-500 text-center w-1 h-[46rem]">
 
             <thead className="sticky top-0 text-gray-700 uppercase font-semibold">
 
@@ -84,10 +85,10 @@ function AdminCustomers() {
                         <td className='px-4 py-3'>{formatDate(user.created_at)}</td>
                         <td className='px-4 py-3'>{formatDate(user.updated_at)}</td>
                         <td className='px-6 py-3 flex gap-10'>
-                            <div className='flex bg-blue-600 items-center justify-center gap-2 w-20 h-8 rounded-md'>
+                            <Link to={`/admin/userdetails/${user.id}`} className='flex bg-blue-600 items-center justify-center gap-2 w-20 h-8 rounded-md'>
                                 <FiEdit className='text-white'/> 
                                 <button className='text-white'>Edit</button>
-                            </div>
+                            </Link>
 
                             <div className='flex bg-red-600 items-center justify-center gap-2 w-20 h-8 rounded-md'>
                                 <RiDeleteBin6Line className='text-white'/> 

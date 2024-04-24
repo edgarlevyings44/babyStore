@@ -46,6 +46,7 @@ Route::group([
 ], function(){
     Route::get('/admin/products', [ProductsController::class, 'getproduct']);
     Route::get('/admin/users', [UserController::class,'allUser']);
+    Route::get('/admin/singlecustomer/{id}', [UserController::class, 'singleCustomer']);
 });
 
 
