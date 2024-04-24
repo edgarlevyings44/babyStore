@@ -8,6 +8,7 @@ import LayoutAdmin from './Components/Admin/Shared/LayoutAdmin'
 import AdminDashboard from './Components/Admin/AdminDashboard'
 import AdminOrder from './Components/Admin/AdminOrder'
 import AdminProducts from './Components/Admin/AdminProducts'
+import AdminCustomers from './Components/Admin/AdminCustomers'
 
 function App() {
   
@@ -23,6 +24,7 @@ function App() {
       <Route index element={<AdminDashboard />}/>
       <Route path='/admin/orders' element={<AdminOrder />}/>
       <Route path='/admin/products' element={<AdminProducts />}/>
+      <Route path='/admin/customers' element={<AdminCustomers />}/>
     </Route>
 
     <Route path='/product/:id' element={<ProductDetails />}/>
