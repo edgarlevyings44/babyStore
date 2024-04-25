@@ -27,11 +27,11 @@ class UserController extends Controller
             return response()->json($validator->errors(), 400);
         }
 
-
+    
         $user = User::create([
             'firstname' => $request->input('firstname'),
             'lastname' => $request->input('lastname'),
-            'email' => $request->input('email'),
+            'email' => $request->input('email'), 
             'password' => Hash::make($request->input('password'))
         ]);
 
