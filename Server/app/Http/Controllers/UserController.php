@@ -153,4 +153,19 @@ class UserController extends Controller
             $users
         );
     }
+
+    public function singleCustomer($id)
+    {
+        $singleCustomer = User::find($id);
+
+        if (!$singleCustomer){
+            return response()->json([
+                'message' => 'User not found'
+            ]);
+        }
+
+        return response()->json(
+            $singleCustomer
+        );
+    }
 }

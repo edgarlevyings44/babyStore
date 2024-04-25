@@ -9,6 +9,7 @@ import AdminDashboard from './Components/Admin/AdminDashboard'
 import AdminOrder from './Components/Admin/AdminOrder'
 import AdminProducts from './Components/Admin/AdminProducts'
 import AdminCustomers from './Components/Admin/AdminCustomers'
+import UserDetails from './Components/Admin/UserDetails'
 
 function App() {
   
@@ -25,6 +26,7 @@ function App() {
       <Route path='/admin/orders' element={<AdminOrder />}/>
       <Route path='/admin/products' element={<AdminProducts />}/>
       <Route path='/admin/customers' element={<AdminCustomers />}/>
+      <Route path='/admin/userdetails/:id' element={<UserDetails />}/>
     </Route>
 
     <Route path='/product/:id' element={<ProductDetails />}/>
