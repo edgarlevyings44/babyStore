@@ -15,7 +15,7 @@ function Login() {
     const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
-    const { login } = useUser();
+    const { login,user } = useUser();
 
     const handleChange = (event:ChangeEvent<HTMLInputElement>) => {
         const key = event.target.name;
@@ -78,9 +78,12 @@ function Login() {
   return (
     <div className="container flex flex-col justify-center items-center mx-auto mt-60">
 
-        <div className="mx-auto">
-
-            <h3 className="text-3xl text-cyan-900 font-bold">Welcome</h3>
+        {user && (
+                <div className="mx-auto">
+                    <h3 className="text-3xl text-cyan-900 font-bold">Welcome {user.firstname} </h3>
+                </div>
+            )}
+            <div className="mx-auto">
             <h4 className="text-xl text-gray-500 mt-4">Please login here</h4>
 
 

@@ -7,7 +7,7 @@ function Navbar() {
 
   const handleLogout = () => {
     logout();
-    navigate("/login");
+    navigate("/");
   };
 
   return (
@@ -34,7 +34,7 @@ function Navbar() {
           </div>
           <a className="btn btn-ghost text-xl">BabyStore</a>
           {/* <ThemedComponent /> */}
-          <div>Welcome, {user?.firstname}</div>
+          {user && <div>Welcome, {user?.firstname}</div>}
         </div>
         <div className="form-control">
           <input
