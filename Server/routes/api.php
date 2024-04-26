@@ -47,6 +47,8 @@ Route::group([
     Route::get('/admin/products', [ProductsController::class, 'getproduct']);
     Route::get('/admin/users', [UserController::class,'allUser']);
     Route::get('/admin/singlecustomer/{id}', [UserController::class, 'singleCustomer']);
+    Route::put('admin/updateuser', [UserController::class, 'editUser']);
+    Route::delete('/admin/deleteuser/{id}', [UserController::class, 'deleteUser']);
 });
 
 

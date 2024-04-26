@@ -147,11 +147,9 @@ class UserController extends Controller
 
     public function allUser()
     {
-        $users = User::all();
-        
-        return response()->json(
-            $users
-        );
+        $users = User::with('roles')->get();
+
+        return response()->json($users);
     }
 
     public function singleCustomer($id)
@@ -167,5 +165,39 @@ class UserController extends Controller
         return response()->json(
             $singleCustomer
         );
+    }
+
+    public function editUser(Request $request)
+    {
+        $userExist = User::where('email', $request->input('email'))->first();
+
+        if ($userExist){
+            $userExist->firstname = $request->input('firstname');
+            $userExist->lastname = $request->input('lastname');
+            $userExist->email = $request->input('email');
+            $userExist->password = $request->input('password');
+
+            $userExist->save();
+
+            return response()->json([
+                'message' => 'user details updated',
+                'User' => $userExist
+            ]);
+        }else{
+            return response()->json([
+                'message' => 'User not found'
+            ]);
+        }
+    }
+
+    public function deleteUser($id)
+    {
+        $user = User::find($id);
+
+        $user->delete();
+
+        return response()->json([
+            'messages' => 'user deleted'
+        ]);
     }
 }
