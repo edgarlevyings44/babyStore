@@ -58,7 +58,7 @@ function Products({ addToCart }: ProductsProps) {
                 <p className="text-gray-600 mt-2">Category: {product.category}</p>
               </div>
             </Link>
-            <button onClick={() => addToCart(product)} className="absolute bottom-2 left-2 right-2 bg-cyan-800 text-white px-2 py-1 rounded-lg">Add to Cart</button>
+            <button onClick={() => addToCart(product)} className="absolute bottom-2 left-2 right-2 bg-cyan-800 text-white px-2 py-1 rounded-lg transition-colors duration-300 hover:bg-cyan-700 active:scale-95">Add to Cart</button>
           </div>
         ))}
       </div>
