@@ -2,12 +2,30 @@ import Navbar from "../Components/navbar"
 import Footer from "../Components/footer"
 import Sidebar from "../Components/sidebar"
 
-function MainLayout({ children }: {children: React.ReactNode}) {
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  image_url: string;
+  price: number;
+  quantity: number;
+  category: string;
+  created_at: string | null;
+  updated_at: string | null;
+
+}
+
+interface MainLayoutProps {
+  children: React.ReactNode;
+  cartItems: Product[];
+}
+
+function MainLayout({ children, cartItems }: MainLayoutProps) {
   
     return (
       <> 
       <div>
-      <Navbar />
+      <Navbar cartItems={cartItems} />
       </div>
         <div>
           <Sidebar>

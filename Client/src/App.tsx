@@ -10,13 +10,31 @@ import AdminOrder from './Components/Admin/AdminOrder'
 import AdminProducts from './Components/Admin/AdminProducts'
 import AdminCustomers from './Components/Admin/AdminCustomers'
 import UserDetails from './Components/Admin/UserDetails'
+import { useState } from 'react'
+
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  image_url: string;
+  price: number;
+  quantity: number;
+  category: string;
+  created_at: string | null;
+  updated_at: string | null;
+}
 
 function App() {
+  const [cartItems, setCartItems] = useState<Product[]>([]);
+
+  const addToCart = (product: Product) => {
+    setCartItems([...cartItems, product]);
+  };
   
   return ( 
     <Routes>
 
-    <Route path="/" element={<Homepage />} />
+    <Route path="/" element={<Homepage addToCart={addToCart}  cartItems={cartItems} />} />
     <Route path='/login' element={<Login />}/>
     <Route path='/register' element={<Register />}/>
     <Route path='/cart' element={<Cart />}/>
