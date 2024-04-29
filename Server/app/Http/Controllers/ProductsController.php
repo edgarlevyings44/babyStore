@@ -27,9 +27,9 @@ class ProductsController extends Controller
             ]);
         }
 
-        return response()->json([
+        return response()->json(
             $singleProduct
-        ]);
+        );
     }
 
 
