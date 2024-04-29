@@ -16,7 +16,7 @@ interface Product {
 }
 
 function ProductDetails() {
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams();
   const [product, setProduct] = useState<Product | null>(null);
 
   useEffect(() => {
