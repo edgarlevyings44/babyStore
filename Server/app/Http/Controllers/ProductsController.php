@@ -53,7 +53,7 @@ class ProductsController extends Controller
             ]);
         }
 
-        $product = Products::create([
+        Products::create([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
             'image_url' => $request->input('image_url'),

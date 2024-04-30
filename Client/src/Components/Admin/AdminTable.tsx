@@ -41,16 +41,16 @@ function AdminTable() {
 
     //end of pagination
  
-    const toggleDropDown = (index) => {
-        setIsOpen(prevState => {
-            const newState = [...prevState];
-            newState.forEach((_, i) => {
-                if(i !== index) newState[i] = false;
-            });
-            newState[index] = !newState[index]
-            return newState;
-        })
-    }
+    // const toggleDropDown = (index) => {
+    //     setIsOpen(prevState => {
+    //         const newState = [...prevState];
+    //         newState.forEach((_, i) => {
+    //             if(i !== index) newState[i] = false;
+    //         });
+    //         newState[index] = !newState[index]
+    //         return newState;
+    //     })
+    // }
   return (
     <div style={{overflowX:'auto', overflowY:'auto', maxHeight:'750px'}}>
         <table className='block divide-y text-sm text-left text-gray-500 w-1 lg:w-full'>
@@ -77,26 +77,11 @@ function AdminTable() {
                         <td className='px-4 py-3'>{product.description}</td>
                         <td className='px-4 py-3'>{product.price}</td>
 
-                        <td className="px-4 py-3 flex items-center justify-end">
-                            <button onClick={() => toggleDropDown(index)} id="apple-imac-27-dropdown" className="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100" type="button">
-                                <svg className="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                                </svg>
-                            </button>
+                        <td className="px-4 py-3 items-center">
 
-
-                            <div className={`${isOpen[index] ? 'absolute' : 'hidden'} ${linkClasses}`}>
-                                <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="apple-imac-27-dropdown-button">
-                                    <li>
-                                        <a href="#" className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
-                                    </li>
-                                </ul>
-                                <div className="py-1">
-                                    <a href="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
-                                </div>
+                            <div className='flex gap-5 items-center'>
+                                <button className='text-center bg-green-600 text-black w-12 h-8 rounded-md'>Edit</button>
+                                <button className='text-center bg-red-500 text-black w-12 h-8 rounded-md'>Delete</button>
                             </div>
 
                         </td>

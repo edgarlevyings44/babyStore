@@ -11,6 +11,7 @@ import AdminProducts from './Components/Admin/AdminProducts'
 import AdminCustomers from './Components/Admin/AdminCustomers'
 import UserDetails from './Components/Admin/UserDetails'
 import { useState } from 'react'
+import AddProduct from './Components/Admin/AddProduct'
 
 interface Product {
   id: number;
@@ -45,6 +46,7 @@ function App() {
       <Route path='/admin/products' element={<AdminProducts />}/>
       <Route path='/admin/customers' element={<AdminCustomers />}/>
       <Route path='/admin/userdetails/:id' element={<UserDetails />}/>
+      <Route path='/admin/addproduct' element={<AddProduct />}/>
     </Route>
 
     <Route path='/product/:id' element={<ProductDetails />}/>

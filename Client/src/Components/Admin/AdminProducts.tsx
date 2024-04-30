@@ -3,8 +3,15 @@ import {Transition, Menu} from '@headlessui/react';
 import { Fragment } from "react/jsx-runtime";
 import { FaFilter } from "react-icons/fa";
 import AdminTable from "./AdminTable";
+import { useNavigate } from "react-router-dom";
 
 function AdminProducts() {
+
+    const navigate = useNavigate();
+
+    const handleAddButton = () => {
+        navigate('/admin/addproduct');
+    }
   return (
     <div className="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5">
 
@@ -34,7 +41,7 @@ function AdminProducts() {
 
                     <div className="w-1/2 md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 md:items-center justify-end md:space-x-3 flex-shrink-0">
 
-                        <button type="button" className="flex items-center justify-center text-white bg-blue-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 focus:outline-none">
+                        <button onClick={handleAddButton} type="button" className="flex items-center justify-center text-white bg-blue-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 focus:outline-none">
                             <IoIosAdd fontSize={20} className="text-white mr-2"/>
                             Add product
                         </button>
