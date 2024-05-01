@@ -13,7 +13,7 @@ function UpdateProduct() {
         image_url:string;
         price:string;
         quantity:string;
-        category:string;
+        category_id:string;
     }
 
     const {id} = useParams();
@@ -27,7 +27,7 @@ function UpdateProduct() {
         image_url:"",
         price:"",
         quantity:"",
-        category:"",
+        category_id:"",
     })
 
     useEffect(() => {
@@ -146,12 +146,12 @@ function UpdateProduct() {
                     <label className="block text-sm font-medium text-gray-600">Category</label>
                     <div className="mt-2">
                        
-                        <select name="category" value={formData.category} onChange={handleSelect} className="w-1/2 py-1 text-gray-900 shadow-sm">
+                        <select name="category" value={formData.category_id} onChange={handleSelect} className="w-1/2 py-1 text-gray-900 shadow-sm">
                             <option value="">Category</option>
-                            <option value={formData.category}>Car Seats</option>
-                            <option value={formData.category}>Feeding</option>
-                            <option value={formData.category}>Gifts</option>
-                            <option value={formData.category}>Strollers</option>
+                            <option value="1">Car Seats</option>
+                            <option value="2">Feeding</option>
+                            <option value="3">Gifts</option>
+                            <option value="4">Strollers</option>
                         </select>
                     </div>
                 </div>

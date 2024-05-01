@@ -14,7 +14,7 @@ function AddProduct() {
         image_url:"",
         price:"",
         quantity:"",
-        category:""
+        category_id:""
     };
 
     const [formData, setFormData] = useState(initialFormData);
@@ -71,6 +71,8 @@ function AddProduct() {
         } finally {
             setLoading(false);
         }
+        
+
 
 
     }
@@ -126,12 +128,12 @@ function AddProduct() {
                     <label className="block text-sm font-medium text-gray-600">Category</label>
                     <div className="mt-2">
                        
-                        <select name="category" value={formData.category} onChange={handleSelect} className="w-1/2 py-1 text-gray-900 shadow-sm">
-                            <option>Category</option>
-                            <option>Car Seats</option>
-                            <option>Feeding</option>
-                            <option>Gifts</option>
-                            <option>Strollers</option>
+                        <select name="category_id" value={formData.category_id} onChange={handleSelect} className="w-1/2 py-1 text-gray-900 shadow-sm">
+                            <option value="">Category</option>
+                            <option value="1">Car Seats</option>
+                            <option value="2">Feeding</option>
+                            <option value="3">Gifts</option>
+                            <option value="4">Strollers</option>
                         </select>
                     </div>
                 </div>

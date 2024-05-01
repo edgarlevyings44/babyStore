@@ -121,7 +121,7 @@ function AdminTable() {
                 ))}
             </tbody>
             {loading && (
-                    <div className='absolute inset-0 flex justify-center items-center bg-gray-800 bg-opacity-50'>
+                    <div className='absolute inset-0 flex justify-center items-center bg-gray-100 bg-opacity-50'>
                         <div className='bg-white p-4 rounded-lg'>
                             <p className='text-3xl text-gray-800'>Loading...</p>
                         </div>
