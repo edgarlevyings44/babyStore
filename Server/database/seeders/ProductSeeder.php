@@ -20,7 +20,7 @@ class ProductSeeder extends Seeder
                 'image_url' => 'https://adenzo.co.ke/public/uploads/all/GBZW35kAmewpZC8MRBTopjbLoGz1DC6plO3T25bN.webp',
                 'price' => 1300,
                 'quantity' => 5,
-                'category' => 'furniture'
+                'category_id' => 1
             ],
 
             [
@@ -29,7 +29,7 @@ class ProductSeeder extends Seeder
                 'image_url' => 'https://img.freepik.com/premium-photo/talking-by-phone-mother-red-coat-have-walk-with-her-kid-pram-park-autumn-time_146671-28374.jpg?w=900',
                 'price' => 299,
                 'quantity' => 10,
-                'category' => 'gear'
+                'category_id' => 2
             ],
             [
                 'name' => 'Soft Baby Blanket Set',
@@ -37,7 +37,7 @@ class ProductSeeder extends Seeder
                 'image_url' => 'https://img.freepik.com/free-photo/blankets-toy-carrycot_23-2147698802.jpg?w=900',
                 'price' => 39,
                 'quantity' => 15,
-                'category' => 'bedding'
+                'category_id' => 3
             ],
             [
                 'name' => 'Interactive Baby Playmat',
@@ -45,7 +45,7 @@ class ProductSeeder extends Seeder
                 'image_url' => 'https://example.com/playmat.jpg',
                 'price' => 49,
                 'quantity' => 12,
-                'category' => 'toys'
+                'category_id' => 4
             ],
             [
                 'name' => 'Baby Diaper Bag Backpack',
@@ -53,7 +53,7 @@ class ProductSeeder extends Seeder
                 'image_url' => 'https://img.freepik.com/free-photo/pink-vanity-case-products_23-2149879885.jpg?w=900',
                 'price' => 59,
                 'quantity' => 20,
-                'category' => 'accessories'
+                'category_id' => 1
             ],
             [
                 'name' => 'Baby Bouncer Seat',
@@ -61,7 +61,7 @@ class ProductSeeder extends Seeder
                 'image_url' => 'https://img.freepik.com/premium-photo/portrait-cute-girl-sitting-wall_1048944-19035968.jpg?w=900',
                 'price' => 79,
                 'quantity' => 7,
-                'category' => 'gear'
+                'category_id' => 3
             ],
             [
                 'name' => 'Baby Bath Tub',
@@ -69,7 +69,7 @@ class ProductSeeder extends Seeder
                 'image_url' => 'https://img.freepik.com/free-photo/girl-playing-bathtub-front-view_23-2150084077.jpg?w=900',
                 'price' => 34,
                 'quantity' => 9,
-                'category' => 'bath'
+                'category_id' => 4
             ],
             [
                 'name' => 'Convertible Highchair',
@@ -77,7 +77,7 @@ class ProductSeeder extends Seeder
                 'image_url' => 'https://img.freepik.com/free-psd/portacrib-mockup_1310-574.jpg?w=900',
                 'price' => 129,
                 'quantity' => 6,
-                'category' => 'furniture'
+                'category_id' => 2
             ],
             [
                 'name' => 'Baby Monitor with Camera',
@@ -85,7 +85,7 @@ class ProductSeeder extends Seeder
                 'image_url' => 'https://img.freepik.com/free-photo/cute-kid-with-stuffed-animal_23-2150573740.jpg?w=900',
                 'price' => 149,
                 'quantity' => 10,
-                'category' => 'gear'
+                'category_id' => 4
             ],
             [
                 'name' => 'Baby Swaddle Blanket Set',
@@ -93,7 +93,7 @@ class ProductSeeder extends Seeder
                 'image_url' => 'https://img.freepik.com/free-photo/cute-baby-doll-children-still-life_23-2150872413.jpg?w=740',
                 'price' => 29,
                 'quantity' => 8,
-                'category' => 'bedding'
+                'category_id' => 3
             ]
         ];
 

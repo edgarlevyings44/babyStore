@@ -37,19 +37,19 @@ class ProductsController extends Controller
 
     public function addProduct(Request $request)
     {
-        $validator = Validator::make($request->only('name', 'description', 'image_url', 'price','quantity', 'category'),[
+        $validator = Validator::make($request->only('name', 'description', 'image_url', 'price','quantity', 'category_id'),[
             'name' => ['required', 'max:50', 'string'],
             'description' => ['required', 'string'],
             'image_url' => ['required', 'string'],
             'price' => ['required', 'integer'],
             'quantity' => ['required', 'integer'],
-            'category' => ['required', 'string']
+            'category_id' => ['required', 'exists:categories,id']
         ]);
 
         if ($validator->fails())
         {
             return response()->json([
-                $validator->errors()
+                'errors' => $validator->errors()->all()
             ]);
         }
 
@@ -59,7 +59,7 @@ class ProductsController extends Controller
             'image_url' => $request->input('image_url'),
             'price' => $request->input('price'),
             'quantity' => $request->input('quantity'),
-            'category' => $request->input('category')
+            'category_id' => $request->input('category_id')
         ]);
 
         return response()->json([
@@ -77,7 +77,7 @@ class ProductsController extends Controller
             $product->image_url = $request->input('image_url');
             $product->price = $request->input('price');
             $product->quantity = $request->input('quantity');
-            $product->category = $request->input('category');
+            $product->category = $request->input('category_id');
 
             $product->save();
 
