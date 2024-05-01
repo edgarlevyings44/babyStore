@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { productsDetailsUrl } from '../Components/urls';
+import MainLayout from '../layout/mainlayout';
 
 interface Product {
   id: number;
@@ -18,11 +19,12 @@ interface Product {
 function ProductDetails() {
   const { id } = useParams();
   const [product, setProduct] = useState<Product | null>(null);
+  const [cartItems] = useState<Product[]>([]);
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`${productsDetailsUrl}${id}`);
+        const response = await axios.get(`${productsDetailsUrl}/${id}`);
         setProduct(response.data);
         console.log(typeof(response.data));
       } catch (error) {
@@ -39,6 +41,7 @@ function ProductDetails() {
   }
 
   return (
+    <MainLayout cartItems={cartItems}>
     <div className="flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full bg-white shadow-md rounded-lg overflow-hidden">
         <div className="relative h-64">
@@ -60,6 +63,8 @@ function ProductDetails() {
       </div>
 
     </div>
+
+    </MainLayout>
   );
 }
 
