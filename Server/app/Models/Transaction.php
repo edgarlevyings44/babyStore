@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Orders extends Model
+class Transaction extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'tax',
-        'total_amount'
+        'phone',
+        'amount'
     ];
 
     public function user()
@@ -19,13 +19,8 @@ class Orders extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function orderItems()
+    public function order()
     {
-        return $this->hasMany(OrderItem::class);
-    }
-
-    public function transaction()
-    {
-        return $this->hasOne(Transaction::class);
+        return $this->belongsTo(Orders::class);
     }
 }

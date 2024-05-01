@@ -47,6 +47,7 @@ function AdminCustomers() {
             setTimeout(() => {
                 setLoading(false);
             }, 35000)
+            setLoading(false);
         })
         
     },[searchQuery])

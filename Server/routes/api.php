@@ -36,7 +36,7 @@ Route::group([
     Route::get('/profile/{id}', [UserController::class, 'profile']);
     Route::post('/logout', [UserController::class, 'logout']);
     Route::put('/forgot', [UserController::class, 'forgotPassword']);
-    Route::post('addproduct', [ProductsController::class, 'addProduct']);
+    
     
 });
 
@@ -45,10 +45,12 @@ Route::group([
     "middleware" => ["auth:api", "admin"]
 ], function(){
     Route::get('/admin/products', [ProductsController::class, 'getproduct']);
+    Route::post('/admin/addproduct', [ProductsController::class, 'addProduct']);
     Route::get('/admin/users', [UserController::class,'allUser']);
     Route::get('/admin/singlecustomer/{id}', [UserController::class, 'singleCustomer']);
     Route::put('admin/updateuser', [UserController::class, 'editUser']);
     Route::delete('/admin/deleteuser/{id}', [UserController::class, 'deleteUser']);
+    Route::delete('/admin/deleteproduct/{id}', [ProductsController::class, 'deleteProduct']);
 });
 
 

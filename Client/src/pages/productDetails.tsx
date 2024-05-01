@@ -22,14 +22,16 @@ function ProductDetails() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`${productsDetailsUrl}/${id}`);
+        const response = await axios.get(`${productsDetailsUrl}${id}`);
         setProduct(response.data);
+        console.log(typeof(response.data));
       } catch (error) {
         console.error('Error fetching product:', error);
       }
     };
 
     fetchProduct();
+
   }, [id]);
 
   if (!product) {
@@ -56,6 +58,7 @@ function ProductDetails() {
           <p className="text-gray-600 mt-2">Category: {product.category}</p>
         </div>
       </div>
+
     </div>
   );
 }
