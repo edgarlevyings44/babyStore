@@ -20,6 +20,7 @@ function ProductDetails() {
   const { id } = useParams();
   const [product, setProduct] = useState<Product | null>(null);
   const [cartItems] = useState<Product[]>([]);
+  const [cartCount, setCartCount] = useState(0);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -36,12 +37,20 @@ function ProductDetails() {
 
   }, [id]);
 
+
+  const handleAddToCart = () => {
+    if (product) {
+      setCartItems([...cartItems, product]);
+      setCartCount(cartCount + 1);
+    }
+  };
+
   if (!product) {
     return <div>Loading...</div>;
   }
 
   return (
-    <MainLayout cartItems={cartItems}>
+    <MainLayout cartItems={cartItems}cartCount={cartCount}>
     <div className="flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full bg-white shadow-md rounded-lg overflow-hidden">
         <div className="relative h-64">
@@ -59,6 +68,12 @@ function ProductDetails() {
             <p className="text-gray-600">Quantity: {product.quantity}</p>
           </div>
           <p className="text-gray-600 mt-2">Category: {product.category}</p>
+          <button
+              onClick={handleAddToCart}
+              className="bg-cyan-700 hover:bg-cyan-800 text-white font-bold py-2 px-4 rounded mt-4 transition-colors duration-300 active:scale-95"
+            >
+              Add to Cart
+            </button>
         </div>
       </div>
 
