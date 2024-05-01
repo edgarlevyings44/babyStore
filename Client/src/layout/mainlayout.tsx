@@ -18,14 +18,15 @@ interface Product {
 interface MainLayoutProps {
   children: React.ReactNode;
   cartItems: Product[];
+  cartCount: number;
 }
 
-function MainLayout({ children, cartItems }: MainLayoutProps) {
+function MainLayout({ children, cartItems,cartCount }: MainLayoutProps) {
   
     return (
       <> 
       <div>
-      <Navbar cartItems={cartItems} />
+      <Navbar cartItems={cartItems} cartCount={cartCount} />
       </div>
         <div>
           <Sidebar>

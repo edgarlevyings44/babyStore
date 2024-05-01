@@ -5,6 +5,7 @@ import { GiCarSeat } from "react-icons/gi";
 import { FaPersonBreastfeeding } from "react-icons/fa6";
 import { FaGifts } from "react-icons/fa";
 import { MdStroller } from "react-icons/md";
+import { GrBaby } from "react-icons/gr";
 function Sidebar({ children }: {children: React.ReactNode}) {
   
     return (
@@ -25,6 +26,7 @@ function Sidebar({ children }: {children: React.ReactNode}) {
             <li><a className="lg:text-xl"><FaPersonBreastfeeding />Feeding</a></li>
             <li><a className="lg:text-xl"><FaGifts />Gifts</a></li>
             <li><a className="lg:text-xl"><MdStroller />Strollers</a></li>
+            <li><a className="lg:text-xl"><GrBaby />Gear</a></li>
           </ul>
         
         </div>
