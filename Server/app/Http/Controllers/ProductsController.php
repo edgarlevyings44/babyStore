@@ -66,4 +66,39 @@ class ProductsController extends Controller
             "Message" => "Product Added"
         ]);
     }
+
+    public function editProduct (Request $request)
+    {
+        $product = Products::where('id', $request->input('id'))->first();
+
+        if ($product){
+            $product->name = $request->input('name');
+            $product->description = $request->input('description');
+            $product->image_url = $request->input('image_url');
+            $product->price = $request->input('price');
+            $product->quantity = $request->input('quantity');
+            $product->category = $request->input('category');
+
+            $product->save();
+
+            return response()->json([
+                'message' => 'product details updated'
+            ]);
+        }else{
+            return response()->json([
+                'message' => 'product not found'
+            ]);
+        }
+    }
+
+    public function deleteProduct($id)
+    {
+        $product = Products::find($id);
+
+        $product->delete();
+
+        return response()->json([
+            'message' => 'product deleted'
+        ]);
+    }
 }

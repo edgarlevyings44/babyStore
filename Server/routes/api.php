@@ -50,6 +50,7 @@ Route::group([
     Route::get('/admin/singlecustomer/{id}', [UserController::class, 'singleCustomer']);
     Route::put('admin/updateuser', [UserController::class, 'editUser']);
     Route::delete('/admin/deleteuser/{id}', [UserController::class, 'deleteUser']);
+    Route::delete('/admin/deleteproduct/{id}', [ProductsController::class, 'deleteProduct']);
 });
 
 
