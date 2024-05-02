@@ -1,4 +1,4 @@
-import { Routes, Route, BrowserRouter } from 'react-router-dom'
+import { Routes, Route, } from 'react-router-dom'
 import Homepage from './pages/homepage'
 import Register from './pages/Register'
 import Login from './pages/Login'
@@ -13,7 +13,7 @@ import UserDetails from './Components/Admin/UserDetails'
 import { useState } from 'react'
 import AddProduct from './Components/Admin/AddProduct'
 import UpdateProduct from './Components/Admin/UpdateProduct'
-
+import useAddToCart from './hooks/useAddToCart'
 
 
 interface Product {
@@ -29,25 +29,14 @@ interface Product {
 }
 
 function App() {
-  const [cartItems, setCartItems] = useState<Product[]>([]);
+  const { cartItems, addToCart, cartCount } = useAddToCart();
 
-  const addToCart = (product: Product) => {
-    setCartItems([...cartItems, product]);
-  };
-
-
-
-
-
-  
   return ( 
     <Routes>
-
-    <Route path="/" element={<Homepage addToCart={addToCart}  cartItems={cartItems} />} />
+    <Route path="/" element={<Homepage addToCart={addToCart}  cartItems={cartItems} cartCount={cartCount} />} />
     <Route path='/login' element={<Login />}/>
     <Route path='/register' element={<Register />}/>
     <Route path='/cart' element={<Cart />}/>
-
     <Route path='/admin' element={<LayoutAdmin />}>
       <Route index element={<AdminDashboard />}/>
       <Route path='/admin/orders' element={<AdminOrder />}/>

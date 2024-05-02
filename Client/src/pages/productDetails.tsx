@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { productsDetailsUrl } from '../Components/urls';
 import MainLayout from '../layout/mainlayout';
+import useAddToCart from '../hooks/useAddToCart';
 
 interface Product {
   id: number;
@@ -19,8 +20,7 @@ interface Product {
 function ProductDetails() {
   const { id } = useParams();
   const [product, setProduct] = useState<Product | null>(null);
-  const [cartItems] = useState<Product[]>([]);
-  const [cartCount, setCartCount] = useState(0);
+  const { addToCart } = useAddToCart();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -40,8 +40,7 @@ function ProductDetails() {
 
   const handleAddToCart = () => {
     if (product) {
-      setCartItems([...cartItems, product]);
-      setCartCount(cartCount + 1);
+      addToCart(product);
     }
   };
 
@@ -50,7 +49,7 @@ function ProductDetails() {
   }
 
   return (
-    <MainLayout cartItems={cartItems}cartCount={cartCount}>
+    <MainLayout cartItems={[]} cartCount={0}>
     <div className="flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full bg-white shadow-md rounded-lg overflow-hidden">
         <div className="relative h-64">

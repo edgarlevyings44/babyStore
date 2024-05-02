@@ -1,5 +1,5 @@
 import { useUser } from "../hooks/useUser";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 interface Product {
   id: number;
@@ -16,9 +16,10 @@ interface Product {
 
 interface NavbarProps {
   cartItems: Product[];
+  cartCount: number;
 }
 
-function Navbar({ cartItems }: NavbarProps) {
+function Navbar({ cartItems}: NavbarProps) {
   const { user, logout } = useUser();
   const navigate = useNavigate();
  
@@ -49,7 +50,9 @@ function Navbar({ cartItems }: NavbarProps) {
               </svg>
             </label>
           </div>
-          <a className="btn btn-ghost text-xl">BabyStore</a>
+          <Link to="/" className="btn btn-ghost text-xl">
+            BabyStore
+          </Link>
           {/* <ThemedComponent /> */}
           {user && <div>Welcome, {user?.firstname}</div>}
         </div>
