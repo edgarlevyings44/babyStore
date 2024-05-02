@@ -146,7 +146,7 @@ function UpdateProduct() {
                     <label className="block text-sm font-medium text-gray-600">Category</label>
                     <div className="mt-2">
                        
-                        <select name="category" value={formData.category_id} onChange={handleSelect} className="w-1/2 py-1 text-gray-900 shadow-sm">
+                        <select name="category_id" value={formData.category_id} onChange={handleSelect} className="w-1/2 py-1 text-gray-900 shadow-sm">
                             <option value="">Category</option>
                             <option value="1">Car Seats</option>
                             <option value="2">Feeding</option>

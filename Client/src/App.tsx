@@ -14,6 +14,8 @@ import { useState } from 'react'
 import AddProduct from './Components/Admin/AddProduct'
 import UpdateProduct from './Components/Admin/UpdateProduct'
 
+
+
 interface Product {
   id: number;
   name: string;
@@ -32,6 +34,11 @@ function App() {
   const addToCart = (product: Product) => {
     setCartItems([...cartItems, product]);
   };
+
+
+
+
+
   
   return ( 
     <Routes>
