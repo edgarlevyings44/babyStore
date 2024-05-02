@@ -1,7 +1,7 @@
 import Navbar from "../Components/navbar"
 import Footer from "../Components/footer"
 import Sidebar from "../Components/sidebar"
-
+import useAddToCart from "../hooks/useAddToCart"
 interface Product {
   id: number;
   name: string;
@@ -21,7 +21,7 @@ interface MainLayoutProps {
   cartCount: number;
 }
 
-function MainLayout({ children, cartItems,cartCount }: MainLayoutProps) {
+function MainLayout({ children,cartItems, cartCount }: MainLayoutProps) {
   
     return (
       <> 
