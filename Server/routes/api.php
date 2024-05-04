@@ -41,12 +41,15 @@ Route::group([
     
 });
 
+// Get all users
+Route::get('/users', [UserController::class, 'getAllUsers']);
+
 // Cart Routes
-Route::get('users/{userId}/cart', 'CartController@getCartItemsByUserId');
-Route::get('carts', 'CartController@getAllCartItems');
-Route::post('carts', 'CartController@addItemToCart');
-Route::put('carts/{id}', 'CartController@editCartItem');
-Route::delete('carts/{id}', 'CartController@deleteCartItem');
+Route::get('/users/{userId}/cart', [CartController::class, 'getCartItemsByUserId']);
+Route::get('/carts', [CartController::class, 'getAllCartItems']);
+Route::post('/carts', [CartController::class, 'addItemToCart']);
+Route::put('/carts/{id}', [CartController::class, 'editCartItem']);
+Route::delete('/carts/{id}', [CartController::class, 'deleteCartItem']);
 
 
 Route::group([
