@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CartController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -39,6 +40,13 @@ Route::group([
     
     
 });
+
+// Cart Routes
+Route::get('users/{userId}/cart', 'CartController@getCartItemsByUserId');
+Route::get('carts', 'CartController@getAllCartItems');
+Route::post('carts', 'CartController@addItemToCart');
+Route::put('carts/{id}', 'CartController@editCartItem');
+Route::delete('carts/{id}', 'CartController@deleteCartItem');
 
 
 Route::group([
