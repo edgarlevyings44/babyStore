@@ -10,23 +10,11 @@ import AdminOrder from './Components/Admin/AdminOrder'
 import AdminProducts from './Components/Admin/AdminProducts'
 import AdminCustomers from './Components/Admin/AdminCustomers'
 import UserDetails from './Components/Admin/UserDetails'
-import { useState } from 'react'
 import AddProduct from './Components/Admin/AddProduct'
 import UpdateProduct from './Components/Admin/UpdateProduct'
 import useAddToCart from './hooks/useAddToCart'
 
 
-interface Product {
-  id: number;
-  name: string;
-  description: string;
-  image_url: string;
-  price: number;
-  quantity: number;
-  category: string;
-  created_at: string | null;
-  updated_at: string | null;
-}
 
 function App() {
   const { cartItems, addToCart, cartCount } = useAddToCart();
@@ -36,7 +24,7 @@ function App() {
     <Route path="/" element={<Homepage addToCart={addToCart}  cartItems={cartItems} cartCount={cartCount} />} />
     <Route path='/login' element={<Login />}/>
     <Route path='/register' element={<Register />}/>
-    <Route path='/cart' element={<Cart />}/>
+    <Route path="/cart" element={<Cart cartItems={cartItems} />} />
     <Route path='/admin' element={<LayoutAdmin />}>
       <Route index element={<AdminDashboard />}/>
       <Route path='/admin/orders' element={<AdminOrder />}/>

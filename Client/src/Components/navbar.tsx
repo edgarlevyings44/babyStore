@@ -56,16 +56,18 @@ function Navbar({ cartItems}: NavbarProps) {
           {/* <ThemedComponent /> */}
           {user && <div>Welcome, {user?.firstname}</div>}
         </div>
-        <div className="form-control">
-          <input
-            type="text"
-            placeholder="Search"
-            className="input input-bordered w-24 md:w-auto"
-          />
+        <div className="flex-1 mx-auto">
+          <div className="form-control w-96">
+            <input
+              type="text"
+              placeholder="Search"
+              className="input input-bordered w-full"
+            />
+          </div>
         </div>
         <div className="flex-none">
           <div className="dropdown dropdown-end">
-            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
+            <Link to ="/cart" tabIndex={0} role="button" className="btn btn-ghost btn-circle">
               <div className="indicator">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -83,20 +85,11 @@ function Navbar({ cartItems}: NavbarProps) {
                 </svg>
                 <span className="badge badge-sm indicator-item">{cartItems.length}</span>
               </div>
-            </div>
+            </Link>
             <div
               tabIndex={0}
               className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow"
             >
-              <div className="card-body">
-                <span className="font-bold text-lg">8 Items</span>
-                <span className="text-info">Subtotal: $999</span>
-                <div className="card-actions">
-                  <button className="btn btn-primary btn-block">
-                    View cart
-                  </button>
-                </div>
-              </div>
             </div>
           </div>
           <div className="dropdown dropdown-end">

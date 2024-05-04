@@ -1,7 +1,6 @@
 import Navbar from "../Components/navbar"
 import Footer from "../Components/footer"
 import Sidebar from "../Components/sidebar"
-import useAddToCart from "../hooks/useAddToCart"
 interface Product {
   id: number;
   name: string;
