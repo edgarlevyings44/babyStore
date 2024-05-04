@@ -49,7 +49,7 @@ const Cart: React.FC<CartProps> = ({ cartItems }) => {
                   <div>
                     <h2 className="text-lg font-bold">{item.name}</h2>
                     <p>Price: ${item.price}</p>
-                    <p>Quantity: {item.quantity}</p>
+                    {/* <p>Quantity: {item.quantity}</p> */}
                     <p>Total: ${(item.price * item.quantity).toFixed(2)}</p>
                   </div>
                 </div>

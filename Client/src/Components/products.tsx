@@ -9,7 +9,7 @@ interface Product {
   image_url: string;
   price: number;
   quantity: number;
-  category: string;
+  category: number;
   created_at: string | null;
   updated_at: string | null;
 }
@@ -53,12 +53,16 @@ function Products({ addToCart }: ProductsProps) {
                 <h2 className="text-xl font-bold mb-2">{product.name}</h2>
                 <div className="flex items-center justify-between">
                   <p className="text-lg font-bold">${product.price}</p>
-                  <p className="text-gray-600">Quantity: {product.quantity}</p>
+                  {/* <p className="text-gray-600">Quantity: {product.quantity}</p> */}
                 </div>
                 <p className="text-gray-600 mt-2">Category: {product.category}</p>
               </div>
             </Link>
-            <button onClick={() => addToCart(product)} className="absolute bottom-2 left-2 right-2 bg-cyan-700 text-white px-2 py-1 rounded-lg transition-colors duration-300 hover:bg-cyan-800 active:scale-95">Add to Cart</button>
+            <div className='pt-6'>
+            <button onClick={() => addToCart(product)} className="absolute bottom-2 left-2 right-2 bg-cyan-700 text-white px-2 py-1 rounded-lg transition-colors duration-300 hover:bg-cyan-800 active:scale-95">Add to Cart
+            </button>
+            </div>
+           
           </div>
         ))}
       </div>
