@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\SelectedProductsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -30,12 +32,16 @@ Route::post('/register', [UserController::class, 'createUser']);
 Route::post('/login', [UserController::class, 'login']);
 
 
+
 Route::group([
     "middleware" => ["auth:api"]
 ], function(){
     Route::get('/profile/{id}', [UserController::class, 'profile']);
     Route::post('/logout', [UserController::class, 'logout']);
     Route::put('/forgot', [UserController::class, 'forgotPassword']);
+    Route::post('/order', [OrderController::class, 'createOrder']);
+    Route::post('/addcart', [SelectedProductsController::class, 'create']);
+    
     
     
 });
@@ -52,6 +58,9 @@ Route::group([
     Route::delete('/admin/deleteuser/{id}', [UserController::class, 'deleteUser']);
     Route::delete('/admin/deleteproduct/{id}', [ProductsController::class, 'deleteProduct']);
     Route::put('/admin/updateproduct', [ProductsController::class,'editProduct']);
+
+    //orders
+    Route::get('/number', [OrderController::class, 'numberOfOrders']);
 });
 
 
