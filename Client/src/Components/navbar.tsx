@@ -1,5 +1,9 @@
+import React from 'react';
 import { useUser } from "../hooks/useUser";
 import { useNavigate, Link } from "react-router-dom";
+import SearchBar from './searchbar';
+import { ProductProvider } from '../context/productContext';
+
 
 interface Product {
   id: number;
@@ -56,14 +60,10 @@ function Navbar({ cartItems}: NavbarProps) {
           {/* <ThemedComponent /> */}
           {user && <div>Welcome, {user?.firstname}</div>}
         </div>
-        <div className="flex-1 mx-auto">
-          <div className="form-control w-96">
-            <input
-              type="text"
-              placeholder="Search"
-              className="input input-bordered w-full"
-            />
-          </div>
+        <div className="flex-1 mx-auto flex items-center">
+          <ProductProvider>
+            <SearchBar />
+          </ProductProvider>
         </div>
         <div className="flex-none">
           <div className="dropdown dropdown-end">
@@ -136,6 +136,7 @@ function Navbar({ cartItems}: NavbarProps) {
         </div>
       </div>
     </>
+  
   );
 }
 
