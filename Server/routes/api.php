@@ -4,6 +4,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SelectedProductsController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserCartController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -46,6 +47,12 @@ Route::group([
     
 });
 
+// Cart Routes
+Route::get('/carts', [UserCartController::class, 'show']);
+Route::post('/carts', [UserCartController::class, 'addItemToCart']);
+Route::put('/carts/{id}', [UserCartController::class, 'editCartItem']);
+Route::delete('/carts/{id}', [UserCartController::class, 'deleteCartItem']);
+Route::get('/users/{userId}/cart', [UserCartController::class, 'getCartItemsByUserId']);
 
 Route::group([
     "middleware" => ["auth:api", "admin"]
