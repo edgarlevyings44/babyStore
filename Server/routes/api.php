@@ -4,6 +4,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SelectedProductsController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\MpesaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -62,6 +63,10 @@ Route::group([
     //orders
     Route::get('/number', [OrderController::class, 'numberOfOrders']);
 });
+
+// Mpesa
+Route::get('/mpesa/access-token', [MpesaController::class, 'getAccessToken']);
+Route::post('/mpesa/stk-push', [MpesaController::class, 'stkPush']);
 
 
 
