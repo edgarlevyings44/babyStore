@@ -13,17 +13,20 @@ import UserDetails from './Components/Admin/UserDetails'
 import AddProduct from './Components/Admin/AddProduct'
 import UpdateProduct from './Components/Admin/UpdateProduct'
 import useAddToCart from './hooks/useAddToCart'
+import ForgotPassword from './pages/ForgotPassword'
 
 
 
 function App() {
   const { cartItems, addToCart, cartCount } = useAddToCart();
 
+
   return ( 
     <Routes>
     <Route path="/" element={<Homepage addToCart={addToCart}  cartItems={cartItems} cartCount={cartCount} />} />
     <Route path='/login' element={<Login />}/>
     <Route path='/register' element={<Register />}/>
+    <Route path='/forgotpassword' element={<ForgotPassword />}/>
     <Route path="/cart" element={<Cart cartItems={cartItems} />} />
     <Route path='/admin' element={<LayoutAdmin />}>
       <Route index element={<AdminDashboard />}/>

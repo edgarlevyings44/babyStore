@@ -64,9 +64,9 @@ function ProductDetails() {
           <p className="text-gray-600 mb-4">{product.description}</p>
           <div className="flex items-center justify-between">
             <p className="text-lg font-bold">${product.price}</p>
-            <p className="text-gray-600">Quantity: {product.quantity}</p>
+            {/* <p className="text-gray-600">Quantity: {product.quantity}</p> */}
           </div>
-          <p className="text-gray-600 mt-2">Category: {product.category}</p>
+          {/* <p className="text-gray-600 mt-2">Category: {product.category}</p> */}
           <button
               onClick={handleAddToCart}
               className="bg-cyan-700 hover:bg-cyan-800 text-white font-bold py-2 px-4 rounded mt-4 transition-colors duration-300 active:scale-95"

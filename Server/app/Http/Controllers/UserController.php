@@ -7,64 +7,51 @@ use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Role;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Str;
+use App\Mail\ForgotPassword;
 
 class UserController extends Controller
 {
     public function createUser(Request $request)
     {
-        $validator = Validator::make($request->only('firstname', 'lastname', 'email', 'password'),[
-            'firstname' => ['required', 'min:2', 'max:50', 'string'],
-            'lastname' => ['required', 'min:2', 'max:50', 'string'],
-            'email' => ['required', 'email', 'unique:users,email'],
-            'password' => ['required', 'min:8', 'max:255', 'string']
-        ]);
 
-        if($validator->fails())
-        {
-            return response()->json($validator->errors(), 400);
-        }
+
+        request()->validate([
+            'firstname' => 'required|min:4|max:20|string',
+            'lastname' => 'required|min:4|max:20|string',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:8|max:50|string|'
+        ]);
 
     
         $user = User::create([
             'firstname' => $request->input('firstname'),
             'lastname' => $request->input('lastname'),
             'email' => $request->input('email'), 
-            'password' => Hash::make($request->input('password'))
+            'password' => Hash::make($request->input('password')),
+            'user_type' => 0
         ]);
 
-        $adminRole = Role::where('name', 'admin')->first();
-        $userRole = Role::where('name', 'user')->first();
 
-        $user->assignRole($userRole);
+    
 
-        $user_role = $user->getRoleNames();
-        
-
-
-        return response()->json([
-            "status" => 200,
-            "message" => "User created",
-            "User Details" => $user,
-            $user_role
-        ]);
+        return $user;
 
 
     }
 
     public function login(Request $request)
     {
-        $validator = Validator::make($request->only('email', 'password'), [
-            'email' => ['required', 'email', 'exists:users,email'],
-            'password' => ['required', 'min:8', 'max:255', 'string']
+        
+        request()->validate([
+            'email' => 'required|email|exists:users,email',
+            'password' => 'required|min:8|max:50|string'
         ]);
 
-        if ($validator->fails())
-        {
-            return response()->json($validator->errors(), 400);
-        }
 
         if (!Auth::attempt($request->only('email', 'password'))){
             return response()->json([
@@ -79,12 +66,11 @@ class UserController extends Controller
 
         $token = $user->createToken("user_token")->accessToken;
 
-        $user_role = $user->getRoleNames();
+
 
         return response()->json([
             "Token" => $token,
             "User" => $user,
-            $user_role
         ]);
     }
 
@@ -128,12 +114,14 @@ class UserController extends Controller
 
         if ($userExist){
 
-            $userExist->password = Hash::make($request->input('password'));
+            $userExist->remember_token = Str::random(30);
 
             $userExist->save();
 
+            Mail::to($userExist->email)->send(new ForgotPassword($userExist));
+
             return response()->json([
-                "message" => "Password changed",
+                "message" => "Please check your email",
                 "User" => $userExist
             ]);
 

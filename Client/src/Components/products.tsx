@@ -15,10 +15,11 @@ interface Product {
 }
 
 interface ProductsProps {
+  handleAddToCart: (newProduct: Product) => void;
   addToCart: (product: Product) => void;
 }
 
-function Products({ addToCart }: ProductsProps) {
+function Products({handleAddToCart}:ProductsProps) {
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
@@ -35,10 +36,16 @@ function Products({ addToCart }: ProductsProps) {
     fetchProducts();
   }, []);
 
+  const addToCart = (product:Product) => {
+    handleAddToCart(product);
+  };
+
   return (
     <div className="flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <h1 className="text-4xl font-bold mb-8">Products</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        
+
         {products.map((product) => (
           <div key={product.id} className="relative bg-white shadow-md rounded-lg overflow-hidden cursor-pointer">
             <Link to={`/product/${product.id}`}>
@@ -65,9 +72,16 @@ function Products({ addToCart }: ProductsProps) {
            
           </div>
         ))}
+
+
       </div>
     </div>
   );
 }
 
 export default Products;
+
+
+
+
+{/* <button onClick={() => addToCart(product)} className="absolute bottom-2 left-2 right-2 bg-cyan-700 text-white px-2 py-1 rounded-lg transition-colors duration-300 hover:bg-cyan-800 active:scale-95">Add to Cart */}

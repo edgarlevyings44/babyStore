@@ -3,19 +3,18 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { loginUser } from "../Components/urls";
-import { useUser } from "../hooks/useUser";
 
-function Login() {
+
+function ForgotPassword() {
 
     const [formData, setFormData] = useState({
         email:"",
-        password:""
     });
 
     const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
-    const { login,user } = useUser();
+
 
     const handleChange = (event:ChangeEvent<HTMLInputElement>) => {
         const key = event.target.name;
@@ -38,27 +37,21 @@ function Login() {
                     'Content-Type' : 'application/json'
                 }
          
-            });
+        });
+        console.log(response);
         
-            login(response.data.Token, response.data.User);
-            console.log(response.data.User.user_type);
-
-
+        if(response){
             Swal.fire({
                 position:"top-end",
                 icon:"success",
-                title:"Logged in",
+                title:"Check Email",
                 showConfirmButton:false,
                 timer:1000
             })
+        }
 
-            const isAdmin = response.data.User.user_type == 1;
 
-            if (isAdmin){
-                navigate('/admin');
-            }else{
-                navigate('/');
-            }
+        
 
             
         
@@ -77,14 +70,11 @@ function Login() {
     }
   return (
     <div className="container flex flex-col justify-center items-center mx-auto mt-60">
-
-        {user && (
-                <div className="mx-auto">
-                    <h3 className="text-3xl text-cyan-900 font-bold">Welcome {user.firstname} </h3>
-                </div>
-            )}
+        <div className="mx-auto">
+            <h3 className="text-3xl text-cyan-900 font-bold">Forgot Password</h3>
+        </div>
             <div className="mx-auto">
-            <h4 className="text-xl text-gray-500 mt-4">Please login here</h4>
+            <h4 className="text-xl text-gray-500 mt-4">Enter your email here</h4>
 
 
             <form className="space-y-6" onSubmit={handleLogin}>
@@ -96,30 +86,8 @@ function Login() {
                     </div>
                 </div>
 
-                <div className="mt-2">
-                    <label className="block text-sm font-medium text-gray-600">Password</label>
-                    <div className="mt-4">
-                        <input name="password" value={formData.password} onChange={handleChange} type="password" required className="w-full rounded-md border-2 border-zinc-950 indent-3 text-gray-900 shadow-sm py-1.5"/>
-                    </div>
-                </div>
-
-                <div className="flex items-center">
-                    <div>
-                        <input type="checkbox" name="rememberme" className="form-checkbox mr-2"></input>
-                    </div>
-
-                    <label className="text-blue-900">Remember Me</label>
-
-                    <a href="/forgotpassword" className="text-blue-500 ml-36">Forgot Password ?</a>
-
-                </div>
-                
                 <div>
-                    <a href="/register" className="text-blue-900">Don't have an account? Register</a>
-                </div>
-
-                <div>
-                    <button type="submit" className="flex justify-center px-40 py-4 rounded-md bg-blue-600 font-semibold hover:bg-green-900 cursor-pointer text-white text-2xl">Login</button>
+                    <button type="submit" className="flex justify-center px-40 py-4 rounded-md bg-blue-600 font-semibold hover:bg-green-900 cursor-pointer text-white text-2xl">Reset</button>
                 </div>
 
             </form>
@@ -137,4 +105,4 @@ function Login() {
   )
 }
 
-export default Login
+export default ForgotPassword

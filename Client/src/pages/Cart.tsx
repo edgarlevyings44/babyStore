@@ -31,8 +31,11 @@ const Cart: React.FC<CartProps> = ({ cartItems }) => {
   };
 
   const calculateTotalPrice = () => {
+
     return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
   };
+
+
 
   return (
     <div className="min-h-screen bg-base-200 flex justify-center items-center">
