@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 
 interface PaymentFormProps {
   isOpen: boolean;
@@ -8,34 +9,56 @@ interface PaymentFormProps {
 const PaymentForm: React.FC<PaymentFormProps> = ({ isOpen, onClose }) => {
   const [amount, setAmount] = useState<string>('');
   const [phoneNumber, setPhoneNumber] = useState<string>('');
+  const [responseMessage, setResponseMessage] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [paymentStatus, setPaymentStatus] = useState<string | null>(null);
+  const [checkoutRequestID, setCheckoutRequestID] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (checkoutRequestID) {
+      const interval = setInterval(async () => {
+        try {
+          const response = await axios.get(`https://hot-rivers-roll.loca.lt/api/paymentstatus/${checkoutRequestID}`);
+          if (response.data.status === 'Paid') {
+            setPaymentStatus('Paid');
+            clearInterval(interval);
+          } else if (response.data.status === 'Failed') {
+            setPaymentStatus('failed');
+            clearInterval(interval);
+          }
+        } catch (error) {
+          console.error('Error fetching payment status:', error);
+        }
+      }, 5000); // Poll every 5 seconds
+
+      return () => clearInterval(interval);
+    }
+  }, [checkoutRequestID]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
+    setResponseMessage('');
     setPaymentStatus(null);
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/mpesa/stk-push', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ amount, phone_number: phoneNumber }),
+      const response = await axios.post('https://hot-rivers-roll.loca.lt/api/mpesa/stk-push', {
+        amount,
+        phone_number: phoneNumber,
       });
-
-      if (response.ok) {
-        setPaymentStatus('success');
+      if (response.data.CheckoutRequestID) {
+        setCheckoutRequestID(response.data.CheckoutRequestID);
+        setResponseMessage(response.data.message);
       } else {
-        setPaymentStatus('failed');
+        setResponseMessage('Failed to initiate payment.');
       }
     } catch (error) {
       console.error('Error:', error);
-      setPaymentStatus('failed');
+      setResponseMessage('Error initiating payment.');
     } finally {
       setIsLoading(false);
     }
+
   };
 
   if (!isOpen) {
@@ -54,6 +77,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ isOpen, onClose }) => {
             <input
               type="text"
               id="amount"
+              name='amount'
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               className="border border-gray-300 rounded-md px-3 py-2 w-full"
@@ -67,6 +91,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ isOpen, onClose }) => {
             <input
               type="text"
               id="phoneNumber"
+              name='phoneNumber'
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
               className="border border-gray-300 rounded-md px-3 py-2 w-full"
@@ -90,13 +115,17 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ isOpen, onClose }) => {
             </button>
           </div>
         </form>
-        {paymentStatus && (
-          <div
-            className={`mt-4 p-4 rounded-md ${
-              paymentStatus === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
-            }`}
-          >
-            {paymentStatus === 'success' ? 'Payment successful!' : 'Payment failed.'}
+        {responseMessage && <p>{responseMessage}</p>}
+        {paymentStatus === 'Paid' && (
+          <div className="success-icon">
+            <img src="/success-icon.png" alt="Payment Successful" />
+            <p>Payment Successful!</p>
+          </div>
+        )}
+        {paymentStatus === 'Failed' && (
+          <div className="error-icon">
+            <img src="/error-icon.png" alt="Payment Failed" />
+            <p>Payment Failed.</p>
           </div>
         )}
       </div>
