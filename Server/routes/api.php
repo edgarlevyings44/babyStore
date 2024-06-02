@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\MpesaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,6 +70,11 @@ Route::group([
 // Mpesa
 Route::get('/mpesa/access-token', [MpesaController::class, 'getAccessToken']);
 Route::post('/mpesa/stk-push', [MpesaController::class, 'stkPush']);
+
+
+//Search
+Route::get( 'search', [SearchController::class, 'searchAllModels']);
+Route::get( 'search-products', [SearchController::class, 'searchProducts']);
 
 
 
