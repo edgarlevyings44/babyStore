@@ -14,7 +14,7 @@ import AddProduct from './Components/Admin/AddProduct'
 import UpdateProduct from './Components/Admin/UpdateProduct'
 import useAddToCart from './hooks/useAddToCart'
 import ForgotPassword from './pages/ForgotPassword'
-
+import ProductSearch from './pages/productSearch'
 
 
 function App() {
@@ -28,6 +28,7 @@ function App() {
     <Route path='/register' element={<Register />}/>
     <Route path='/forgotpassword' element={<ForgotPassword />}/>
     <Route path="/cart" element={<Cart cartItems={cartItems} />} />
+    <Route path="/search" element={<ProductSearch />} />
     <Route path='/admin' element={<LayoutAdmin />}>
       <Route index element={<AdminDashboard />}/>
       <Route path='/admin/orders' element={<AdminOrder />}/>
