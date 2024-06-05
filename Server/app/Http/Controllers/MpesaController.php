@@ -159,6 +159,7 @@ class MpesaController extends Controller
             ], 404);
         }
     }
+    
     public function index()
     {
         //
