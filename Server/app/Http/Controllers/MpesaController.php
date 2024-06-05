@@ -15,9 +15,9 @@ class MpesaController extends Controller
 {
     public function getAccessToken()
     {
-        $consumerKey = 'LhGH4PCPimpXc66pjZerRijeJPfHx2IesBx3G7JucuyArrSJ'; 
-        $consumerSecret = 'R88cVacJMJ98Oh9P09Dz3Ak5aBRAOO6GqNSurqGsMiVNmw2cwRGRYz0Ww7Ox1KzO';
-        $url = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials';
+        $consumerKey = env('MPESA_CONSUMER_KEY');
+        $consumerSecret = env('CONSUMER_SECRET');
+        $url = env('SANDBOX_URL');
 
         $response = Http::withBasicAuth($consumerKey, $consumerSecret)->get($url);
 
@@ -26,8 +26,8 @@ class MpesaController extends Controller
     public function stkPush(Request $request)
     {
         $accessToken = $this->getAccessToken();
-        $url = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
-        $passKey = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919';
+        $url = env('MPESA_STK_ENDPOINT');
+        $passKey = env('PASSKEY');
         $BusinessShortCode = '174379';
         $timeStamp = Carbon::now()->format('YmdHis');
         $password = base64_encode($BusinessShortCode.$passKey.$timeStamp);
@@ -36,7 +36,7 @@ class MpesaController extends Controller
         $PartyA = $request->phoneNumber;
         $PartyB = '174379';
         $PhoneNumber = $request->phoneNumber;
-        $CallbackUrl = "https://hot-rivers-roll.loca.lt/api/mpesa/stkcallback";
+        $CallbackUrl = env('CALLBACKURL');
         $AcountReference = 'Baby Store';
         $TransactionDesc = 'payment for goods';
 
