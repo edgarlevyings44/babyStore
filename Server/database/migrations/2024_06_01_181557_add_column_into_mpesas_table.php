@@ -1,0 +1,35 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::table('mpesas', function (Blueprint $table) {
+            $table->string('phone');
+            $table->double('amount');
+            $table->string('reference');
+            $table->string('description');
+            $table->string('MerchantRequestID')->unique();
+            $table->string('checkoutRequestID')->unique();
+            $table->string('status'); //requested, paid, failed
+            $table->string('MpesaReceiptNumber')->nullable();
+            $table->string('ResultDesc')->nullable();
+            $table->string('TransactionDate')->nullable();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        //
+    }
+};

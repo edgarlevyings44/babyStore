@@ -70,6 +70,8 @@ Route::group([
 // Mpesa routes
 Route::get('/mpesa/access-token', [MpesaController::class, 'getAccessToken']);
 Route::post('/mpesa/stk-push', [MpesaController::class, 'stkPush']);
+Route::post('/mpesa/stkcallback', [MpesaController::class, 'stkCallback']);
+Route::get('/paymentstatus/{checkoutRequestID}', [MpesaController::class, 'getPaymentStatus']);
 
 
 //Search
