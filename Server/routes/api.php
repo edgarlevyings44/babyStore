@@ -67,7 +67,7 @@ Route::group([
     Route::get('/number', [OrderController::class, 'numberOfOrders']);
 });
 
-// Mpesa
+// Mpesa routes
 Route::get('/mpesa/access-token', [MpesaController::class, 'getAccessToken']);
 Route::post('/mpesa/stk-push', [MpesaController::class, 'stkPush']);
 
