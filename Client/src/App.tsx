@@ -15,6 +15,7 @@ import UpdateProduct from './Components/Admin/UpdateProduct'
 import useAddToCart from './hooks/useAddToCart'
 import ForgotPassword from './pages/ForgotPassword'
 import ProductSearch from './pages/productSearch'
+import PaymentForm from './Components/mpesa'
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
     <Route path='/forgotpassword' element={<ForgotPassword />}/>
     <Route path="/cart" element={<Cart cartItems={cartItems} />} />
     <Route path="/search" element={<ProductSearch />} />
+    <Route path='/mpesa' element={<PaymentForm />}/>
     <Route path='/admin' element={<LayoutAdmin />}>
       <Route index element={<AdminDashboard />}/>
       <Route path='/admin/orders' element={<AdminOrder />}/>

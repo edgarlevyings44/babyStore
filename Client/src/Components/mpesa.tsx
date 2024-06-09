@@ -1,12 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
-interface PaymentFormProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
+// interface PaymentFormProps {
+//   isOpen: boolean;
+//   onClose: () => void;
+// }
 
-const PaymentForm: React.FC<PaymentFormProps> = ({ isOpen, onClose }) => {
+const PaymentForm: React.FC = () => {
   const [amount, setAmount] = useState<string>('');
   const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [responseMessage, setResponseMessage] = useState<string>('');
@@ -61,15 +61,17 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ isOpen, onClose }) => {
 
   };
 
-  if (!isOpen) {
-    return null;
-  }
+  // if (!isOpen) {
+  //   return null;
+  // }
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-6 shadow-lg">
-        <h2 className="text-xl font-bold mb-4">Make Payment</h2>
-        <form onSubmit={handleSubmit}>
+    <div className="fixed inset-0 flex items-center justify-center custom-gradient-bg">
+      <div className="bg-white rounded-lg h-2/3 w-1/3 shadow-lg">
+        <h2 className="text-xl font-bold p-2">CheckOut</h2>
+        <p className='p-1 font-semibold'>Please complete the purchase by providing payment details</p>
+        <img className='h-32' src='/src/assets/mpesa.png'/>
+        <form onSubmit={handleSubmit} className='p-4 indent-1'>
           <div className="mb-4">
             <label htmlFor="amount" className="block font-medium mb-2">
               Amount
@@ -80,7 +82,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ isOpen, onClose }) => {
               name='amount'
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
-              className="border border-gray-300 rounded-md px-3 py-2 w-full"
+              className="border border-gray-300 rounded-md py-2 w-3/4"
               required
             />
           </div>
@@ -94,14 +96,14 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ isOpen, onClose }) => {
               name='phoneNumber'
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
-              className="border border-gray-300 rounded-md px-3 py-2 w-full"
+              className="border border-gray-300 rounded-md py-2 w-3/4"
               required
             />
           </div>
-          <div className="flex justify-end">
+          <div className="flex mt-10 justify-between">
             <button
               type="button"
-              onClick={onClose}
+              // onClick={onClose}
               className="mr-2 px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400 transition-colors"
             >
               Cancel
