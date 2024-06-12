@@ -4,19 +4,28 @@ import { productsUrl } from '../urls';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
+interface Product {
+    id: number;
+    name: string;
+    category: string;
+    quantity: number;
+    description: string;
+    price: number;
+}
 
-function AdminTable() {
+
+const AdminTable:React.FC = () => {
 
     const linkClasses = "z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600";
-    const [isOpen, setIsOpen] = useState([]);
+    const [isOpen, setIsOpen] = useState<boolean[]>([]);
 
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState<boolean>(false);
 
-    const [products, setProduct] = useState([]);
+    const [products, setProduct] = useState<Product[]>([]);
 
     //Pagination
-    const [currentPage, setCurrentPage] = useState(1);
-    const[itemsPerPage] = useState(10);    
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const[itemsPerPage] = useState<number>(10);    
 
     useEffect(() => {
         setLoading(true);
@@ -35,7 +44,7 @@ function AdminTable() {
     const totalPages = Math.ceil(products.length / itemsPerPage);
     // console.log(products.length);
 
-    const handleClick = (page) => {
+    const handleClick = (page: number) => {
         setCurrentPage(page);
     }
 
@@ -57,12 +66,12 @@ function AdminTable() {
     // }
 
 
-    const handleDelete = (id) => {
+    const handleDelete = (id: number) => {
         setLoading(true);
         
         axios.delete(`http://127.0.0.1:8000/api/admin/deleteproduct/${id}`,{
             headers:{
-                Authorization :'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiOGIwMTZiNzk4OTE0ZjBmMWJjMDVlOWRkOWY1MTY1Yjk3YmMzMjk0OTY0M2RlNmIxYzliZGY3MTAzNzQ1MjdkN2I3NzdkYmQxOWE5ZmRhYjAiLCJpYXQiOjE3MTM4NzkxMDMuNTkzODE3LCJuYmYiOjE3MTM4NzkxMDMuNTkzODIsImV4cCI6MTc0NTQxNTEwMi4zNjIyMjYsInN1YiI6IjQiLCJzY29wZXMiOltdfQ.CXz8fHICdKLT6AOp3bOMrTP878F30VL0tE1AyUkX3s1pP3WP0FtPa0J-KIhOk7ItDAhZW5WEFekQN24s4qDvn--PgrLSoKbKiqd8E1Z_F7tl0XoeFLVn-IX-bJwfLJLrE2C5SwECgMet1hcZUJzvx-CIq1DROYX0TT62cWPfsucsuZ9WnrJzWQybi5FshYWC_o0oyNu9GCoJYWUtD4irmubdAEK3JdAnluO5ivOX3y8LjTHipF7_-wONKsqAJ229sCF-ZV2gbXYqw2LiiPyiVUIMJY5Z9hLKl_gZ-gVii98QUois7Nyjhu-GYdbpux6c5v8BTnn1hQRNVGab7hbloTpDbmFP3VS6INEr3sOZhYfUPOFujVZCOm-KVqMPKm56pB9EviHq5VfL6SGbZjXAuzIQzbl8Uhn1vafbtN-Phq2ZcRHt2bi8pDf8257mUKLE6uwvAyz6XMB4BMG16CfMi7xyXDhJW1G-FSYOvP6ZTsxDxj031jKtRElp39e7784ZPFaXQGhjQPqpRlyfkM7Z546DWF5bddal5124pz7jxl0h0TJvPDy2XAm0nVjyrOHSkaJAmjyGvu0xghGaX9ayRz5rcDR5F9m7v9NCfJ6tSKTZ_1rvr7lQiKH-RYv5bvNqG30md_9HEBgTzfq6VnAMaTPW7oNJv2YjZap5SKIqhfE'
+                Authorization :'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZjBlZmU0OWUzNzFiNDk0NzM1NDQ3OGUxNmYzNWVhOTY3MTA1MzIxNWYyNjdmYzA1MzJlMDExYjIzMDRkYWY1M2NkMjczY2Q1ZGFhMDAzYjQiLCJpYXQiOjE3MTgyMjEwMjYuOTU1OTA2LCJuYmYiOjE3MTgyMjEwMjYuOTU1OTIsImV4cCI6MTc0OTc1NzAyNS44MjkxMTEsInN1YiI6IjEiLCJzY29wZXMiOltdfQ.ws1EbmR6JTKkAt1K9dJK_YIerPpdVRunNPNyvr2cfAUHY2kXZhP23D-0JQ6ZmC6RT-mbzeXGEzi6RW89DgXzwFZG3vBl0k4FaGfIGs6oq5W_D3WuS75BGnpGqOx104eUHnwIDl5JcJh9dk03M_HtJ53Mzfy5DP_moQM2k84n_hAC_MQ0aRkEjGthwrUQkIN3HLOcoE9-1pQE-csm80itL_32ws2H-CCUGBfU2aRn4A69hjXHWWyVZdSvw02LKV3DsJxNsBBLZk1kWjg9Rh7axze_b8V9ms0x87eEpszhpBZtoT6Me7n-0wiH0otlwst1qGT2jYGBNUD_zJVWb3qJbbdI0c7Dkw6rO8xLLEfZGMG3-HplTsnDu4zDlogMzwluGaiPzMzBA0KJOq_cwFioY8d0hUYouRq7LXm4WV660oBcBxHmgIXN5emWwTgAZthfxpKEArrl8HVWjgXofP-mmaJ2_XMx5j7Idkb6NOXI_IJsmMXRnt6cSJ96wWqnHbk63XI9CTkMT-QUYeJZIxefw7sAmyYEMnz5F7TEST4761y6Dd1lkHDvMKZu3oSUuP7cahLBBR7wvfSjfq6V6wruBvFI-sk7-fnF7WhqHQnuvUm6DjIzVyy8Y2fiaH3VKfvUEGumxc_67inbCwcKOLYFCWGXgDckxncV8k8DZbZTRdc'
             }
         })
         .then((response) => {
@@ -99,7 +108,7 @@ function AdminTable() {
             </thead>
 
             <tbody>
-                {currentProducts.map((product, index) => (
+                {currentProducts.map((product) => (
                     <tr key={product.id} className='border-b'>
                         <td className='px-4 py-3'>{product.name}</td>
                         <td className='px-4 py-3'>{product.category}</td>

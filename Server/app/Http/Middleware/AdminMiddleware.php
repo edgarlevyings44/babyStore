@@ -15,9 +15,9 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->user() && $request->user()->roles->contains('name', 'admin')){
+        if (auth()->check() && $request->user()->user_type == 1){
             return $next($request);
         }
-        abort(403, 'Unauthorized');
+        abort(403, 'Forbidden');
     }
 }

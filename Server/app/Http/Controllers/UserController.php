@@ -33,7 +33,7 @@ class UserController extends Controller
             'lastname' => $request->input('lastname'),
             'email' => $request->input('email'), 
             'password' => Hash::make($request->input('password')),
-            'user_type' => 0
+            'user_type' => 1
         ]);
 
 
@@ -135,9 +135,9 @@ class UserController extends Controller
 
     public function allUser()
     {
-        $users = User::with('roles')->get();
+        $users = User::all();
 
-        return response()->json($users);
+        return response($users);
     }
 
     public function singleCustomer($id)
