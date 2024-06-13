@@ -16,6 +16,7 @@ import useAddToCart from './hooks/useAddToCart'
 import ForgotPassword from './pages/ForgotPassword'
 import ProductSearch from './pages/productSearch'
 import PaymentForm from './Components/mpesa'
+import ProtectedRoute from './AdminRoute'
 
 
 function App() {
@@ -31,14 +32,17 @@ function App() {
     <Route path="/cart" element={<Cart cartItems={cartItems} />} />
     <Route path="/search" element={<ProductSearch />} />
     <Route path='/mpesa' element={<PaymentForm />}/>
-    <Route path='/admin' element={<LayoutAdmin />}>
-      <Route index element={<AdminDashboard />}/>
-      <Route path='/admin/orders' element={<AdminOrder />}/>
-      <Route path='/admin/products' element={<AdminProducts />}/>
-      <Route path='/admin/customers' element={<AdminCustomers />}/>
-      <Route path='/admin/userdetails/:id' element={<UserDetails />}/>
-      <Route path='/admin/addproduct' element={<AddProduct />}/>
-      <Route path='/admin/updateproduct/:id' element={<UpdateProduct />}/>
+    
+    <Route path='/admin' element={<ProtectedRoute requiredRole='admin'/>}>
+      <Route element={<LayoutAdmin />}>
+        <Route index element={<AdminDashboard />}/>
+        <Route path='/admin/orders' element={<AdminOrder />}/>
+        <Route path='/admin/products' element={<AdminProducts />}/>
+        <Route path='/admin/customers' element={<AdminCustomers />}/>
+        <Route path='/admin/userdetails/:id' element={<UserDetails />}/>
+        <Route path='/admin/addproduct' element={<AddProduct />}/>
+        <Route path='/admin/updateproduct/:id' element={<UpdateProduct />}/>
+      </Route>
     </Route>
 
     <Route path='/product/:id' element={<ProductDetails />}/>

@@ -9,6 +9,7 @@ interface User {
     firstname: string;
     lastname: string;
     role: Role[];
+    user_type:number;
 }
 interface Role {
     id: number;
