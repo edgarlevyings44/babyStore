@@ -33,7 +33,7 @@ class UserController extends Controller
             'lastname' => $request->input('lastname'),
             'email' => $request->input('email'), 
             'password' => Hash::make($request->input('password')),
-            'user_type' => 1
+            'user_type' => 0
         ]);
 
 
