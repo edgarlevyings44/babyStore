@@ -74,18 +74,6 @@ class UserController extends Controller
         ]);
     }
 
-    public function existingUser()
-    {
-        $user = Auth::user();
-
-        return response()->json([
-            'id' => $user->id,
-            'firstname' => $user->firstname,
-            'user_type' =>$user->user_type
-        ]);
-    }
-
-
     public function profile($id)
     {
         $user = Auth::user();

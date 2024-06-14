@@ -20,7 +20,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ requiredRole }) => {
     }
 
     if (requiredRole && user?.user_type !== 1) {
-        return <Navigate to="/unauthorized" />;
+        return <Navigate to="/login" />;
     }
 
     return <Outlet />;
