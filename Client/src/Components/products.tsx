@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { productsUrl } from './urls';
+// import useAddToCart from '../hooks/useAddToCart';
 
 interface Product {
   id: number;
@@ -9,18 +10,19 @@ interface Product {
   image_url: string;
   price: number;
   quantity: number;
-  category: number;
+  category: string;
   created_at: string | null;
   updated_at: string | null;
 }
 
 interface ProductsProps {
-  handleAddToCart: (newProduct: Product) => void;
-  addToCart: (product: Product) => void;
+  handleAddToCart: (product: Product) => void;
+  // addToCart: (product: Product) => void;
 }
 
-function Products({handleAddToCart}:ProductsProps) {
+const Products: React.FC<ProductsProps> = ({ handleAddToCart }) => {
   const [products, setProducts] = useState<Product[]>([]);
+  // const {addToCart} = useAddToCart();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -36,9 +38,16 @@ function Products({handleAddToCart}:ProductsProps) {
     fetchProducts();
   }, []);
 
-  const addToCart = (product:Product) => {
-    handleAddToCart(product);
-  };
+  // const addToCart = (product:Product) => {
+  //   console.log('Adding to cart', product);
+  //   handleAddToCart(product);
+  // };
+
+  const handleAddToCartClick = (product: Product) => {
+    console.log('Adding to cart',product);
+    // addToCart(product);
+    handleAddToCart(product)
+  }
 
   return (
     <div className="flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -66,7 +75,7 @@ function Products({handleAddToCart}:ProductsProps) {
               </div>
             </Link>
             <div className='pt-6'>
-            <button onClick={() => addToCart(product)} className="absolute bottom-2 left-2 right-2 bg-cyan-700 text-white px-2 py-1 rounded-lg transition-colors duration-300 hover:bg-cyan-800 active:scale-95">Add to Cart
+            <button onClick={() => handleAddToCartClick(product)} className="absolute bottom-2 left-2 right-2 bg-cyan-700 text-white px-2 py-1 rounded-lg transition-colors duration-300 hover:bg-cyan-800 active:scale-95">Add to Cart
             </button>
             </div>
            
