@@ -16,9 +16,20 @@ const useAddToCart = () => {
   const [cartItems, setCartItems] = useState<Product[]>([]);
   const [cartCount, setCartCount] = useState(0);
 
-  const addToCart = (product: Product) => {
-    setCartItems([...cartItems, product]);
-    setCartCount(cartCount + 1);
+  const addToCart = (newProduct: Product) => {
+    const existingProduct = cartItems.find((item) => item.id == newProduct.id);
+
+    if(existingProduct){
+      const latestProduct = cartItems.map((item) =>
+      item.id === newProduct.id ? {
+        ...item, quantity: item.quantity + 1} : item)
+        setCartItems(latestProduct);
+    }
+    else
+    {
+      setCartItems([...cartItems, { ...newProduct, quantity: 1}])
+    }
+
   };
 
   const removeFromCart = (productId: number) => {

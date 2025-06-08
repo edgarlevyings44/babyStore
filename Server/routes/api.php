@@ -45,7 +45,6 @@ Route::group([
     Route::put('/forgot', [UserController::class, 'forgotPassword']);
     Route::post('/order', [OrderController::class, 'createOrder']);
     Route::post('/addcart', [SelectedProductsController::class, 'create']);
-    Route::get('/getuser', [UserController::class, 'existingUser']);
     
     
     

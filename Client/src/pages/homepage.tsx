@@ -3,7 +3,7 @@ import Banner from "../Components/banner"
 import Products from "../Components/products"
 
 
-import { useState } from "react"
+import React, { useState } from "react"
 // import PaymentForm from "../Components/mpesa"
 
 
@@ -25,7 +25,7 @@ interface HomepageProps {
   cartItems: Product[];
   cartCount: number;
 }
-function Homepage({ addToCart, cartItems, cartCount }: HomepageProps) {
+const Homepage: React.FC<HomepageProps> = ({ addToCart, cartItems, cartCount }) => {
   // const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   // const openModal = () => {
@@ -50,7 +50,7 @@ function Homepage({ addToCart, cartItems, cartCount }: HomepageProps) {
             {/* <div className="bg-green-900 p-4 block-md">
             </div> */}
             <div>
-              < Products addToCart={addToCart}/>
+              < Products handleAddToCart={addToCart}/>
             </div>
           </div>
       </MainLayout>
